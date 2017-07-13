@@ -1,0 +1,59 @@
+{
+  "name": "arcticfox-config",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A simple device monitoring tool for vape devices with Arcticfox firmware",
+  "main": "main.js",
+  "repository": "https://github.com/hobbyquaker/arcticfox-monitor",
+  "keywords": [
+    "vape",
+    "ecigarette",
+    "evolv",
+    "arcticfox",
+    "battery",
+    "mod",
+    "monitor",
+    "nfeteam",
+    "ntoolbox"
+  ],
+  "author": {
+    "name": "Sebastian Raff",
+    "email": "bastiraff@googlemail.com",
+    "url": "https://github.com/hobbyquaker"
+  },
+  "license": "GPLv3",
+  "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-builder": "^19.11.1",
+    "electron-rebuild": "^1.5.11"
+  },
+  "dependencies": {
+    "arcticfox": "0.0.6",
+    "async": "^2.1.4",
+    "electron-is-dev": "^0.2.0",
+    "electron-json-storage": "^3.0.0",
+    "electron-window-state": "^4.0.1",
+    "jquery": "^3.1.1",
+    "photonkit": "^0.1.2"
+  },
+  "scripts": {
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "build",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "productName": "Arcticfox Config",
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "tar.gz"
+      ]
+    }
+  }
+}

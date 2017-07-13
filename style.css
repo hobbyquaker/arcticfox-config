@@ -1,0 +1,70 @@
+body {
+    font: caption;
+}
+
+.tab-group {
+    height: 24px;
+    width: 100%;
+}
+
+.view-container .view {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.view-container .subview {
+    width: 100%;
+    height: calc(100% - 24px);
+    position: absolute;
+    top: 24px;
+    left: 0;
+}
+
+#SelectedProfile {
+    display: inline-block;
+    width: 60px;
+    height: 16px;
+    font-size: 10px;
+}
+
+#table-profiles {
+    width: 100%;
+}
+
+#table-profiles tr td {
+    height: 28px;
+}
+.c1 {
+    width: 146px;
+}
+.c2 {
+    width: 192px;
+}
+.c3 {
+    width: 142px;
+}
+
+tr:active {
+    background-color: inherit;
+    color: inherit;
+}
+
+#TCR {
+    width: 60px;
+}
+
+.checkbox {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#connection-status {
+    padding-left: 6px;
+}
+
+#view-screen-layout select {
+    width: 186px;
+}

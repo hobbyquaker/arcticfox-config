@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Arcticfox Config</title>
+    <link rel="stylesheet" href="node_modules/photonkit/dist/css/photon.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+
+    </style>
+
+  </head>
+  <body>
+
+  <div class="window">
+
+    <header class="toolbar toolbar-header">
+
+      <h1 class="title" id="Product">Unknown Device</h1>
+
+      <div class="toolbar-actions">
+        Firmware Ver: <input size="8" type="text" class="fox-val" id="FirmwareBuild" disabled>
+        HW Ver: <input size="8" type="text" class="fox-val" id="HardwareVersion" disabled>
+
+        <button id="configuration-menu" class="btn btn-default btn-dropdown pull-right">
+          Configuration
+        </button>
+      </div>
+    </header>
+
+    <div class="tab-group" id="main">
+      <div class="tab-item active" data-view="profiles">
+        Profiles
+      </div>
+      <div class="tab-item" data-view="screen">
+        Screen
+      </div>
+      <div class="tab-item" data-view="controls">
+        Controls
+      </div>
+      <div class="tab-item" data-view="smart">
+        Smart
+      </div>
+      <div class="tab-item" data-view="advanced">
+        Advanced
+      </div>
+      <div class="tab-item" data-view="stats">
+        Stats
+      </div>
+
+    </div>
+
+    <div class="window-content">
+      <div class="view-container view-main">
+        <div class="view" id="view-profiles">
+
+          <div class="tab-group" id="profiles">
+            <div class="tab-item" id="profile-0">
+              P1
+            </div>
+            <div class="tab-item" id="profile-1">
+              P2
+            </div>
+            <div class="tab-item" id="profile-2">
+              P3
+            </div>
+            <div class="tab-item" id="profile-3">
+              P4
+            </div>
+            <div class="tab-item" id="profile-4">
+              P5
+            </div>
+            <div class="tab-item" id="profile-5">
+              P6
+            </div>
+            <div class="tab-item" id="profile-6">
+              P7
+            </div>
+            <div class="tab-item" id="profile-7">
+              P8
+            </div>
+            <div class="tab-item-fixed">
+              Active:
+              <select id="SelectedProfile" class="fox-val form-control">
+                <option val="0">P1</option>
+                <option val="1">P2</option>
+                <option val="2">P3</option>
+                <option val="3">P4</option>
+                <option val="4">P5</option>
+                <option val="5">P6</option>
+                <option val="6">P7</option>
+                <option val="7">P8</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div>
+            <div style="height: 16px"></div>
+            <table id="table-profiles">
+              <tr>
+                <td class="c1">Profile</td>
+                <td class="c2">
+                  <div class="checkbox">
+                    <label>
+                      <input class="fox-pval" type="checkbox" id="IsEnabled"> Enabled
+                    </label>
+                  </div>
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+              <tr>
+                <td class="c1">Name</td>
+                <td class="c2">
+                  <input class="fox-pval" type="text" id="Name">
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+              <tr>
+                <td class="c1">Power</td>
+                <td class="c2">
+                  <input class="fox-pval" type="number" id="Power"> W
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+              <tr>
+                <td class="c1">Preheat Type</td>
+                <td class="c2">
+                  <select class="fox-pval" id="PreheatType">
+                    <option value="0">Absolute (W)</option>
+                    <option value="1">Relative (%)</option>
+                    <option value="2">Curve</option>
+                  </select>
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+              <tr class="fox-notcurve">
+                <td class="c1">Preheat Power</td>
+                <td class="c2">
+                  <input class="fox-pval" type="number" id="PreheatPower">
+                  <span id="preheatUnit">W</span>
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+              <tr class="fox-curveonly">
+                <td class="c1">Preheat Curve</td>
+                <td class="c2">
+                 <select class="fox-pval" id="SelectedCurve">
+
+                 </select>
+                </td>
+                <td class="c3">
+                  <button class="btn btn-mini btn-default">Edit</button>
+                </td>
+                <td class="c4"></td>
+              </tr>
+              <tr>
+                <td class="c1">Preheat Time</td>
+                <td class="c2">
+                  <input class="fox-pval" type="number" id="PreheatTime"> s
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+              <tr>
+                <td class="c1">Preheat Delay</td>
+                <td class="c2">
+                  <input class="fox-pval" type="number" id="PreheatDelay"> s
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+              <tr>
+                <td class="c1">Resistance</td>
+                <td class="c2">
+                  <input class="fox-pval" type="number" id="Resistance"> &#8486;
+                </td>
+                <td class="c3">
+                  <span class="fox-tconly">
+                    <input class="fox-pval" type="checkbox" id="IsResistanceLocked"> Locked
+                  </span>
+                </td>
+                <td class="c4"></td>
+              </tr>
+              <tr>
+                <td class="c1">Mode</td>
+                <td class="c2">
+                  <select class="fox-pval" id="mode">
+                    <option value="vw">Power</option>
+                    <option value="tc">Temp. Control</option>
+                  </select>
+                </td>
+                <td class="c3">
+                  <button id="tc-setup" class="fox-tconly btn btn-mini btn-default">Setup</button>
+                </td>
+                <td class="c4"></td>
+              </tr>
+              <tr class="fox-tconly">
+                <td class="c1">Coil Material</td>
+                <td class="c2">
+                  <select class="fox-pval" id="Material">
+
+                  </select>
+                </td>
+                <td class="c3">
+                  <input length="4" class="fox-pval" type="number" id="TCR">
+                </td>
+                <td class="c4"></td>
+              </tr>
+              <tr class="fox-tconly">
+                <td class="c1">Temperature</td>
+                <td class="c2">
+                  <input class="fox-pval" type="number" id="Temperature">
+                </td>
+                <td class="c3">
+                  <select class="fox-pval" id="IsCelcius">
+                    <option value="true">°C</option>
+                    <option value="false">°F</option>
+                  </select>
+                </td>
+                <td class="c4"></td>
+              </tr>
+              <tr class="fox-tconly">
+                <td class="c1"></td>
+                <td class="c2">
+                  <div class="checkbox">
+                    <label>
+                      <input class="fox-pval" type="checkbox" id="IsTemperatureDominant"> Temperature Dominant
+                    </label>
+                  </div>
+                </td>
+                <td class="c3"></td>
+                <td class="c4"></td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+        <div class="view" id="view-screen" style="display:none">
+
+          <div class="tab-group" id="screen">
+            <div class="tab-item active" data-view="screen-settings">
+              Settings
+            </div>
+            <div class="tab-item" data-view="screen-appearance">
+              Appearance
+            </div>
+            <div class="tab-item" data-view="screen-layout">
+              Layout
+            </div>
+            <div class="tab-item" data-view="screen-stealth">
+              Stealth
+            </div>
+
+
+          </div>
+          <div class="view-container view-screen">
+            <div class="subview" id="view-screen-settings">
+              <div style="height: 28px"></div>
+              <table id="table-screen-settings">
+                <tr>
+                  <td class="c1">Brightness</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" id="Brightness">
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Idle Time</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" id="DimTimeout">
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Idle Time (Locked)</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" id="DimTimeoutLocked">
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Idle Time (Charging)</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" id="DimTimeoutCharging">
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Puff Screen Delay</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" id="PuffScreenDelay">
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Flipped</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="IsFlipped"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+
+              </table>
+            </div>
+            <div class="subview" id="view-screen-appearance" style="display:none">
+              <div style="height: 28px"></div>
+              <table id="table-screen-appearance">
+                <tr>
+                  <td class="c1">Main Screen Skin</td>
+                  <td class="c2">
+                    <select class="fox-val" id="MainScreenSkin">
+                      <option value="0">Classic</option>
+                      <option value="1">Circle</option>
+                      <option value="2">Foxy</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Show Logo</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="IsLogoEnabled"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Logo Delay</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" id="ShowLogoDelay"> s
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Show Clock</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="IsClockOnMainScreen"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Clock Delay</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" id="ShowClockDelay"> s
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Clock Type</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ClockType">
+                      <option value="0">Analog</option>
+                      <option value="1">Digital</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Charge Screen</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ChargeScreenType">
+                      <option value="0">Classic</option>
+                      <option value="1">Extended</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Charge Extra</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ChargeExtraType">
+                      <option value="0">None</option>
+                      <option value="1">Clock A</option>
+                      <option value="2">Clock D</option>
+                      <option value="3">Logo</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Screensaver Time</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ScreensaveDuration">
+                      <option value="0">Off</option>
+                      <option value="1">1 Min</option>
+                      <option value="2">2 Min</option>
+                      <option value="5">5 Min</option>
+                      <option value="10">10 Min</option>
+                      <option value="15">15 Min</option>
+                      <option value="20">20 Min</option>
+                      <option value="30">30 Min</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="subview" id="view-screen-layout" style="display:none">
+
+              <div class="tab-group" id="screen-layout">
+                <div class="tab-item" data-view="screen-layout-classic">
+                  Classic
+                </div>
+                <div class="tab-item" data-view="screen-layout-circle">
+                  Circle
+                </div>
+                <div class="tab-item" data-view="screen-layout-foxy">
+                  Foxy
+                </div>
+                <div class="tab-item" data-view="screen-layout-small">
+                  Small
+                </div>
+              </div>
+
+              <div class="view-container view-screen-layout">
+                <div class="subsubview" id="view-screen-layout-classic">
+                  <div style="height: 16px"></div>
+                  <table id="table-screen-layout-classic">
+                    <tr>
+                      <td class="c1">VW Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinVWLine1">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="ClassicSkinVWLine1Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinVWLine2">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="ClassicSkinVWLine2Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 3</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinVWLine3">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="ClassicSkinVWLine3Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 4</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinVWLine4">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="ClassicSkinVWLine4Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                      <td class="c1">TC Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinTCLine1">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="ClassicSkinTCLine1Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinTCLine2">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="ClassicSkinTCLine2Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 3</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinTCLine3">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3"><div class="checkbox">
+                        <label>
+                          <input class="fox-val" type="checkbox" id="ClassicSkinTCLine3Puff"> Puff Time
+                        </label>
+                      </div></td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 4</td>
+                      <td class="c2">
+                        <select class="fox-val" id="ClassicSkinTCLine4">
+                          <option value="0">Non Dominant (Pwr / Temp)</option>
+                          <option value="16">Volt</option>
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                          <option value="59">Battery</option>
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="ClassicSkinTCLine4Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="subsubview" id="view-screen-layout-circle">
+                  <div style="height: 16px"></div>
+                  <table id="table-screen-layout-circle">
+                    <tr>
+                      <td class="c1">VW Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="CircleSkinVWLine1">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="CircleSkinVWLine2">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 3</td>
+                      <td class="c2">
+                        <select class="fox-val" id="CircleSkinVWLine3">
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="CircleSkinVWLine3Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                      <td class="c1">TC Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="CircleSkinTCLine1">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="CircleSkinTCLine2">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 3</td>
+                      <td class="c2">
+                        <select class="fox-val" id="CircleSkinTCLine3">
+                          <option value="64">Battery</option>
+                          <option value="65">Battery + %</option>
+                          <option value="66">Battery + V</option>
+                        </select>
+                      </td>
+                      <td class="c3"><div class="checkbox">
+                        <label>
+                          <input class="fox-val" type="checkbox" id="CircleSkinTCLine3Puff"> Puff Time
+                        </label>
+                      </div></td>
+                      <td class="c4"></td>
+                    </tr>
+
+                  </table>
+                </div>
+                <div class="subsubview" id="view-screen-layout-foxy">
+                  <div style="height: 16px"></div>
+                  <table id="table-screen-layout-foxy">
+                    <tr>
+                      <td class="c1">VW Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="FoxySkinVWLine1">
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Live Resistance</option>
+                          <option value="54">Date/Time</option>
+                          <option value="55">Last Puff Time</option>
+                          <option value="56">Last Temperature</option>
+                          <option value="57">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="FoxySkinVWLine1Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="FoxySkinVWLine2">
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Live Resistance</option>
+                          <option value="54">Date/Time</option>
+                          <option value="55">Last Puff Time</option>
+                          <option value="56">Last Temperature</option>
+                          <option value="57">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="FoxySkinVWLine2Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 3</td>
+                      <td class="c2">
+                        <select class="fox-val" id="FoxySkinVWLine3">
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Live Resistance</option>
+                          <option value="54">Date/Time</option>
+                          <option value="55">Last Puff Time</option>
+                          <option value="56">Last Temperature</option>
+                          <option value="57">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="FoxySkinVWLine3Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                      <td class="c1">TC Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="FoxySkinTCLine1">
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Live Resistance</option>
+                          <option value="54">Date/Time</option>
+                          <option value="55">Last Puff Time</option>
+                          <option value="56">Last Temperature</option>
+                          <option value="57">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="FoxySkinTCLine1Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="FoxySkinTCLine2">
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Live Resistance</option>
+                          <option value="54">Date/Time</option>
+                          <option value="55">Last Puff Time</option>
+                          <option value="56">Last Temperature</option>
+                          <option value="57">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="FoxySkinTCLine2Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 3</td>
+                      <td class="c2">
+                        <select class="fox-val" id="FoxySkinTCLine3">
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Live Resistance</option>
+                          <option value="54">Date/Time</option>
+                          <option value="55">Last Puff Time</option>
+                          <option value="56">Last Temperature</option>
+                          <option value="57">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3"><div class="checkbox">
+                        <label>
+                          <input class="fox-val" type="checkbox" id="FoxySkinTCLine3Puff"> Puff Time
+                        </label>
+                      </div></td>
+                      <td class="c4"></td>
+                    </tr>
+                  </table>
+
+                </div>
+                <div class="subsubview" id="view-screen-layout-small">
+                  <div style="height: 16px"></div>
+                  <table id="table-screen-layout-classic">
+                    <tr>
+                      <td class="c1">VW Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="SmallSkinVWLine1">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="SmallSkinVWLine1Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">VW Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="SmallSkinVWLine2">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="SmallSkinVWLine2Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                      <td class="c1">TC Line 1</td>
+                      <td class="c2">
+                        <select class="fox-val" id="SmallSkinTCLine1">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="SmallSkinTCLine1Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                    <tr>
+                      <td class="c1">TC Line 2</td>
+                      <td class="c2">
+                        <select class="fox-val" id="SmallSkinTCLine2">
+                          <option value="32">Resistance</option>
+                          <option value="48">Output Amps</option>
+                          <option value="49">Puffs</option>
+                          <option value="50">Puff Time</option>
+                          <option value="51">Battery Volts</option>
+                          <option value="52">Output Volts</option>
+                          <option value="53">Board Temperature</option>
+                          <option value="54">Live Resistance</option>
+                          <option value="55">Date/Time</option>
+                          <option value="56">Last Puff Time</option>
+                          <option value="57">Last Temperature</option>
+                          <option value="58">Last Power</option>
+                        </select>
+                      </td>
+                      <td class="c3">
+                        <div class="checkbox">
+                          <label>
+                            <input class="fox-val" type="checkbox" id="SmallSkinTCLine2Puff"> Puff Time
+                          </label>
+                        </div>
+                      </td>
+                      <td class="c4"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            <div class="subview" id="view-screen-stealth" style="display:none">
+              <div style="height: 28px"></div>
+              <table id="table-screen-stealth">
+                <tr>
+                  <td class="c1">Stealth Mode</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="IsStealthMode"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Show Charging</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="ShowChargingInStealth"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Show Screensaver</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="ShowScreensaverInStealth"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="view" id="view-controls" style="display:none">
+          <div class="tab-group" id="controls">
+            <div class="tab-item active" data-view="controls-settings">
+              Settings
+            </div>
+            <div class="tab-item" data-view="controls-multiclicks">
+              Multi Clicks
+            </div>
+            <div class="tab-item" data-view="controls-shortcutsvw">
+              Shortcuts VW
+            </div>
+            <div class="tab-item" data-view="controls-shortcutstc">
+              Shortcuts TC
+            </div>
+          </div>
+          <div class="view-container view-controls">
+            <div class="subview" id="view-controls-settings">
+              <div style="height: 28px"></div>
+              <table id="table-controls-settings">
+                <tr>
+                  <td class="c1">Power 1W Step</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="IsPowerStep1W"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Temp 1°C/2°F Step</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="IsTemperatureStep1C2F"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">+ / - Wakeup</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="WakeUpByPlusMinus"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">+ / - behavior</td>
+                  <td class="c2">
+                    <select class="fox-val" id="IsUpDownSwapped">
+                      <option value="false">Normal</option>
+                      <option value="true">Swapped</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="subview" id="view-controls-multiclicks" style="display:none">
+              <div style="height: 12px"></div>
+              <h5 style="padding-left:12px">VW Mode Fire Button Multi Clicks</h5>
+              <table id="table-controls-multiclicks-vw">
+                <tr>
+                  <td class="c1">2 Clicks</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ClicksVW0">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">3 Clicks</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ClicksVW1">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">4 Clicks</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ClicksVW2">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+              <h5 style="padding-left:12px">TC Mode Fire Button Multi Clicks</h5>
+              <table id="table-controls-multiclicks-tc">
+                <tr>
+                  <td class="c1">2 Clicks</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ClicksTC0">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">3 Clicks</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ClicksTC1">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">4 Clicks</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ClicksTC2">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+              <h5 style="padding-left:12px">Shared</h5>
+              <table id="table-controls-multiclicks-shared">
+                <tr>
+                  <td class="c1">5 Clicks</td>
+                  <td class="c2">
+                    <select class="fox-val" id="FiveClicks">
+                      <option value="0">OnOff</option>
+                      <option value="1">LockUnlock</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="subview" id="view-controls-shortcutsvw" style="display:none">
+              <div style="height: 12px"></div>
+              <h5 style="padding-left:12px">In Standby</h5>
+              <table id="table-controls-shortcuts-vw-standby">
+                <tr>
+                  <td class="c1">Fire -</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ShortcutsVW0InStandby">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Fire +</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ShortcutsVW1InStandby">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">+ -</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ShortcutsVW2InStandby">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+              <table id="table-controls-shortcuts-vw-menu">
+                <tr>
+                  <td class="s1"></td>
+                  <td class="s2"><h5>In Menu</h5></td>
+                  <td class="s3"><h5>In Edit</h5></td>
+                  <td class="s4"><h5>In Profile Select</h5></td>
+                </tr>
+                <tr>
+                  <td class="s1">Fire -</td>
+                  <td class="s2">
+                    <select class="fox-val" id="ShortcutsVW0InMenu">
+                      <option value="0">None</option>
+                      <option value="1">Back</option>
+                      <option value="2">Exit</option>
+                    </select>
+                  </td>
+                  <td class="s3">
+                    <select class="fox-val" id="ShortcutsVW0InEditMain">
+                      <option value="0">None</option>
+                      <option value="1">ResetCounters</option>
+                    </select>
+                  </td>
+                  <td class="s4">
+                    <select class="fox-val" id="ShortcutsVW0InSelector">
+                      <option value="0">None</option>
+                      <option value="1">ResetResistance</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="s1">Fire +</td>
+                  <td class="s2">
+                    <select class="fox-val" id="ShortcutsVW1InMenu">
+                      <option value="0">None</option>
+                      <option value="1">Back</option>
+                      <option value="2">Exit</option>
+                    </select>
+                  </td>
+                  <td class="s3">
+                    <select class="fox-val" id="ShortcutsVW1InEditMain">
+                      <option value="0">None</option>
+                      <option value="1">ResetCounters</option>
+                    </select>
+                  </td>
+                  <td class="s4">
+                    <select class="fox-val" id="ShortcutsVW1InSelector">
+                      <option value="0">None</option>
+                      <option value="1">ResetResistance</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="s1">+ -</td>
+                  <td class="s2">
+                    <select class="fox-val" id="ShortcutsVW2InMenu">
+                      <option value="0">None</option>
+                      <option value="1">Back</option>
+                      <option value="2">Exit</option>
+                    </select>
+                  </td>
+                  <td class="s3">
+                    <select class="fox-val" id="ShortcutsVW2InEditMain">
+                      <option value="0">None</option>
+                      <option value="1">ResetCounters</option>
+                    </select>
+                  </td>
+                  <td class="s4">
+                    <select class="fox-val" id="ShortcutsVW2InSelector">
+                      <option value="0">None</option>
+                      <option value="1">ResetResistance</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="subview" id="view-controls-shortcutstc" style="display:none">
+              <div style="height: 12px"></div>
+              <h5 style="padding-left:12px">In Standby</h5>
+              <table id="table-controls-shortcuts-tc-standby">
+                <tr>
+                  <td class="c1">Fire -</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ShortcutsTC0InStandby">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Fire +</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ShortcutsTC1InStandby">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">+ -</td>
+                  <td class="c2">
+                    <select class="fox-val" id="ShortcutsTC2InStandby">
+                      <option value="0">None</option>
+                      <option value="1">Edit</option>
+                      <option value="2">ProfileSelector</option>
+                      <option value="3">TemperatureDominant</option>
+                      <option value="4">MainScreenClock</option>
+                      <option value="5">OnOff</option>
+                      <option value="6">LslOnOff</option>
+                      <option value="7">MainMenu</option>
+                      <option value="8">PreheatEdit</option>
+                      <option value="9">ProfileEdit</option>
+                      <option value="10">SmartOnOff</option>
+                      <option value="11">InfoScreen</option>
+                      <option value="12">ResetCounters</option>
+                      <option value="13">StealthOnOff</option>
+                      <option value="14">KeyLock</option>
+                      <option value="15">LockResistance</option>
+                      <option value="16">PowerBank</option>
+                      <option value="17">DeviceLock</option>
+                      <option value="18">ReReadResistanceAndSaveToProfile</option>
+                      <option value="19">ReReadResistanceAndSmart</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+              <table id="table-controls-shortcuts-tc-menu">
+                <tr>
+                  <td class="s1"></td>
+                  <td class="s2"><h5>In Menu</h5></td>
+                  <td class="s3"><h5>In Edit</h5></td>
+                  <td class="s4"><h5>In Profile Select</h5></td>
+                </tr>
+                <tr>
+                  <td class="s1">Fire -</td>
+                  <td class="s2">
+                    <select class="fox-val" id="ShortcutsTC0InMenu">
+                      <option value="0">None</option>
+                      <option value="1">Back</option>
+                      <option value="2">Exit</option>
+                    </select>
+                  </td>
+                  <td class="s3">
+                    <select class="fox-val" id="ShortcutsTC0InEditMain">
+                      <option value="0">None</option>
+                      <option value="1">ResetCounters</option>
+                    </select>
+                  </td>
+                  <td class="s4">
+                    <select class="fox-val" id="ShortcutsTC0InSelector">
+                      <option value="0">None</option>
+                      <option value="1">ResetResistance</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="s1">Fire +</td>
+                  <td class="s2">
+                    <select class="fox-val" id="ShortcutsTC1InMenu">
+                      <option value="0">None</option>
+                      <option value="1">Back</option>
+                      <option value="2">Exit</option>
+                    </select>
+                  </td>
+                  <td class="s3">
+                    <select class="fox-val" id="ShortcutsTC1InEditMain">
+                      <option value="0">None</option>
+                      <option value="1">ResetCounters</option>
+                    </select>
+                  </td>
+                  <td class="s4">
+                    <select class="fox-val" id="ShortcutsTC1InSelector">
+                      <option value="0">None</option>
+                      <option value="1">ResetResistance</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="s1">+ -</td>
+                  <td class="s2">
+                    <select class="fox-val" id="ShortcutsTC2InMenu">
+                      <option value="0">None</option>
+                      <option value="1">Back</option>
+                      <option value="2">Exit</option>
+                    </select>
+                  </td>
+                  <td class="s3">
+                    <select class="fox-val" id="ShortcutsTC2InEditMain">
+                      <option value="0">None</option>
+                      <option value="1">ResetCounters</option>
+                    </select>
+                  </td>
+                  <td class="s4">
+                    <select class="fox-val" id="ShortcutsTC2InSelector">
+                      <option value="0">None</option>
+                      <option value="1">ResetResistance</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="view" id="view-smart" style="display:none">
+          <div style="height: 28px"></div>
+          <table id="table-smart">
+            <tr>
+              <td class="c1">Smart Mode</td>
+              <td class="c2">
+                <select class="fox-val" id="SmartMode">
+                  <option value="0">Off</option>
+                  <option value="1">On</option>
+                  <option value="2">Lazy</option>
+                </select>
+              </td>
+              <td class="c3"></td>
+              <td class="c4"></td>
+            </tr>
+            <tr>
+              <td class="c1">Smart Range</td>
+              <td class="c2">
+                <input class="fox-val" type="number" id="SmartRange">
+              </td>
+              <td class="c3"></td>
+              <td class="c4"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="view" id="view-advanced" style="display:none">
+          <div class="tab-group" id="advanced">
+            <div class="tab-item active" data-view="advanced-settings">
+              Settings
+            </div>
+            <div class="tab-item" data-view="advanced-powercurves">
+              Power Curves
+            </div>
+            <div class="tab-item" data-view="advanced-materials">
+              Materials
+            </div>
+            <div class="tab-item" data-view="advanced-bvo">
+              BVO
+            </div>
+
+
+          </div>
+          <div class="view-container view-advanced">
+            <div class="subview" id="view-advanced-settings">
+              <div style="height: 28px"></div>
+              <table id="table-stats">
+                <tr>
+                  <td class="c1">Power Limit</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" max="400" step="0.1" id="PowerLimit"> W
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Puff Cut-Off</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="1" max="15" step="0.1" id="PuffCutOff"> s
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Shunt Correction</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="85" max="115" step="1" id="ShuntCorrection"> %
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Internal Resistance</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="0" max="0.1" step="0.001" id="InternalResistance"> Ohm
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Battery Model</td>
+                  <td class="c2">
+                    <select class="fox-val" id="BatteryModel">
+                      <option value="0">Generic Battery</option>
+                      <option value="1">USR1</option>
+                      <option value="2">USR2</option>
+                      <option value="3">USR3</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">RTC Mode</td>
+                  <td class="c2">
+                    <select class="fox-val" id="RtcMode">
+                      <option value="0">LXT</option>
+                      <option value="1">LIRC</option>
+                      <option value="2">LSL</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Reset Counters on Bat Change</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="ResetCountersOnStartup"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Check TCR</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="CheckTCR"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Deep Sleep Behavior</td>
+                  <td class="c2">
+                    <select class="fox-val" id="DeepSleepMode">
+                      <option value="0">Just Sleep</option>
+                      <option value="2">Lock Device</option>
+                      <option value="1">Turn Off Device</option>
+                    </select>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Deep Sleep Delay</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="1" max="30" step="1" id="DeepSleepDelay"> min
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">USB No Sleep</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="UsbNoSleep"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">USB Charge</td>
+                  <td class="c2">
+                    <div class="checkbox">
+                      <label>
+                        <input class="fox-val" type="checkbox" id="IsUsbCharge"> Enabled
+                      </label>
+                    </div>
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="subview" id="view-advanced-powercurves" style="display:none">
+              ... TODO
+            </div>
+            <div class="subview" id="view-advanced-materials" style="display:none">
+              ... TODO
+            </div>
+            <div class="subview" id="view-advanced-bvo" style="display:none">
+              <div style="height: 28px"></div>
+              <table id="table-advanced-bvo">
+                <tr>
+                  <td class="c1">Battery 1</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="-0.3" max="0.3" step="0.01" id="BatteryVoltageOffset1"> V
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Battery 2</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="-0.3" max="0.3" step="0.01" id="BatteryVoltageOffset2"> V
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Battery 3</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="-0.3" max="0.3" step="0.01" id="BatteryVoltageOffset3"> V
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+                <tr>
+                  <td class="c1">Battery 4</td>
+                  <td class="c2">
+                    <input class="fox-val" type="number" min="-0.3" max="0.3" step="0.01" id="BatteryVoltageOffset4"> V
+                  </td>
+                  <td class="c3"></td>
+                  <td class="c4"></td>
+                </tr>
+
+
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="view" id="view-stats" style="display:none">
+          <div style="height: 28px"></div>
+          <table id="table-stats">
+            <tr>
+              <td class="c1">Puffs Count</td>
+              <td class="c2">
+                <input class="fox-val" type="number" id="PuffsCount">
+              </td>
+              <td class="c3"></td>
+              <td class="c4"></td>
+            </tr>
+            <tr>
+              <td class="c1">Puffs Time</td>
+              <td class="c2">
+                <input class="fox-val" type="number" step="0.1" id="PuffsTime">
+              </td>
+              <td class="c3"></td>
+              <td class="c4"></td>
+            </tr>
+            <tr>
+              <td class="c1">Puffs Time Format</td>
+              <td class="c2">
+                <select class="fox-val" id="PuffsTimeFormat">
+                  <option value="0">Seconds</option>
+                  <option value="1">HH:MM:SS</option>
+                </select>
+              </td>
+              <td class="c3"></td>
+              <td class="c4"></td>
+            </tr>
+
+
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer class="toolbar toolbar-footer">
+      <div class="toolbar-actions">
+        <button id="download-settings" class="btn btn-default">
+          Download Settings
+        </button>
+        <button id="upload-settings" class="btn btn-default">
+          Upload Settings
+        </button>
+        <button id="reset-settings" class="btn btn-default">
+          Reset Settings
+        </button>
+
+
+      </div>
+      <div id="connection-status">
+        Device is disconnected
+      </div>
+    </footer>
+
+  </div>
+
+  </body>
+  <script>
+    require('./renderer.js');
+  </script>
+</html>
