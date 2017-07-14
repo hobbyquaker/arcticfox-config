@@ -6,10 +6,10 @@
 [![Github All Releases](https://img.shields.io/github/downloads/hobbyquaker/arcticfox-config/total.svg)]()
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-> Configuration Tool for Vape Devices / Battery Mods with Arcticfox Firmware. Works on MacOS and Linux.
+> Configuration Tool for Vape Battery Mods with Arcticfox Firmware. Works on MacOS and Linux.
 
-**Warning**: This is work in progress, one could call it an "early alpha version". Many things are still missing, there
-are a lot of bugs. Until now only reading the configuration is implemented, **you can not upload config to the device**.
+**Warning**: This is work in progress, one could call it a "first beta version". Several things are still missing, there
+are probably a lot of bugs... 
 
 ![Screenshot](screenshot.png "Screenshot")
 

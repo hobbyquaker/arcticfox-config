@@ -1,10 +1,15 @@
-const ipc = require('electron').ipcRenderer;
-const $ = jQuery =  require('jquery');
+const fs = require('fs');
+const electron = require('electron')
+const ipc = electron.ipcRenderer;
+const $ = jQuery = require('jquery');
+
+let app = electron.remote.app;
 let config;
+let lang;
 
 ipc.on('connect', (event, status) => {
     console.log('connect', status);
-    $('#connection-status').html(status ? 'Device is connected' : 'Device is disconnected');
+    $('#connection-status').html(_('Status.Device') + ' ' +  (status ? _('Status.Connected') : _('Status.Disconnected')));
 });
 
 ipc.on('config', (event, data) => {
@@ -178,11 +183,11 @@ function uiInitButtons() {
     });
 
     $('#download-settings').click(function () {
-        alert('... TODO'); // TODO
+        ipc.send('download');
     });
 
     $('#upload-settings').click(function () {
-        alert('... TODO'); // TODO
+        ipc.send('upload', config);
     });
 
     $('#reset-settings').click(function () {
@@ -237,7 +242,34 @@ function uiUpdate() {
     uiProfile(config.SelectedProfile);
 }
 
+function uiTranslate() {
+    try {
+        lang = JSON.parse(fs.readFileSync('./i18n/' + app.getLocale() + '.json').toString());
+        console.log('LANG', app.getLocale());
+    } catch (err) {
+        console.log(err);
+        return;
+    }
+    $('[data-lang]').each(function () {
+        const key = $(this).data('lang');
+        const phrase = lang[key];
+        console.log('i18n', key, phrase);
+        if (phrase) {
+            $(this).html(phrase);
+        }
+    });
+}
+
+function _(key) {
+    if (lang && lang[key]) {
+        return lang[key];
+    } else {
+        return key;
+    }
+}
+
 function uiInit() {
+    uiTranslate();
     uiInitButtons();
     uiInitTabs();
     uiInitChangeHandlers();

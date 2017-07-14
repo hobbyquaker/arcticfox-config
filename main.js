@@ -19,8 +19,6 @@ let mainWindow;
 let menu;
 let debug;
 
-
-
 let menuTemplate = [
     {
 
@@ -133,10 +131,28 @@ fox.on('close', () => {
     ipcSend('connect', false);
 });
 
+fox.on('error', err => {
+    debug(err);
+});
+
+ipc.on('download', () => {
+    fox.readConfiguration((err, data) => {
+        if (err) {
+            throw err;
+        }
+        ipcSend('config', data);
+    });
+});
+
+ipc.on('upload', (event, data) => {
+    fox.writeConfiguration(data);
+});
 
 app.on('ready', () => {
-    fox.connect();
     createWindow();
+    setTimeout(function () {
+        fox.connect();
+    }, 1000);
 });
 
 app.on('window-all-closed', () => {
