@@ -48,6 +48,8 @@
       "index.html",
       "main.js",
       "renderer.js",
+      "pireg.html",
+      "renderer-pireg.js",
       "style.css",
       "node_modules/",
       "i18n/"

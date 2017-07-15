@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const electron = require('electron')
+const url = require('url');
+const electron = require('electron');
 const ipc = electron.ipcRenderer;
 const $ = jQuery = require('jquery');
 
@@ -17,6 +18,15 @@ ipc.on('config', (event, data) => {
     console.log('config', data);
     config = data;
     uiUpdate();
+});
+
+ipc.on('piregchange', (event, data) => {
+    console.log('piregchange', data);
+    console.log('activeProfile', activeProfile);
+    config.profiles[activeProfile].PIRegulatorIsEnabled = data.PIRegulatorIsEnabled;
+    config.profiles[activeProfile].PIRegulatorRange = data.PIRegulatorRange;
+    config.profiles[activeProfile].PIRegulatorPValue = data.PIRegulatorPValue;
+    config.profiles[activeProfile].PIRegulatorIValue = data.PIRegulatorIValue;
 });
 
 let activeProfile;
@@ -176,7 +186,7 @@ function uiProfile(p) {
 
 function uiInitButtons() {
     $('#tc-setup').click(function () {
-        alert('... TODO'); // TODO
+        ipc.send('pireg', config.profiles[activeProfile]);
     });
 
     $('#configuration-menu').click(function () {

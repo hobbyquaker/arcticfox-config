@@ -148,6 +148,39 @@ ipc.on('upload', (event, data) => {
     fox.writeConfiguration(data);
 });
 
+ipc.on('pireg', (event, data) => {
+
+
+    let piregWin = new BrowserWindow({
+        width: 400,
+        height: 275,
+        modal: true,
+        parent: mainWindow,
+        show: false
+    });
+
+    piregWin.on('ready-to-show', () => {
+        piregWin.webContents.send('data', data);
+        piregWin.show();
+    });
+
+    piregWin.on('close', () => {
+        piregWin = null;
+    });
+
+    piregWin.loadURL(url.format({
+        pathname: path.join(__dirname, 'pireg.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+
+
+});
+
+ipc.on('piregchange', (event, data) => {
+    ipcSend('piregchange', data);
+});
+
 app.on('ready', () => {
     createWindow();
     setTimeout(function () {
