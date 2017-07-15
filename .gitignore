@@ -2,4 +2,3 @@ node_modules
 .idea
 dist
 release
-dev

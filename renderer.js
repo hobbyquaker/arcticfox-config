@@ -270,6 +270,14 @@ function uiTranslate() {
             $(this).html(phrase);
         }
     });
+    $('[data-lang-title]').each(function () {
+        const key = $(this).data('lang-title');
+        const phrase = lang[key];
+        console.log('i18n', key, phrase);
+        if (phrase) {
+            $(this).attr('title', phrase);
+        }
+    });
 }
 
 function _(key) {
