@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PI-Regulator Setup</title>
+    <link rel="stylesheet" href="node_modules/photonkit/dist/css/photon.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="window">
+
+    <header class="toolbar toolbar-header">
+        <h1 class="title" id="Product" data-lang="">PI-Regulator Setup</h1>
+    </header>
+
+    <div class="window-content">
+        <table id="table-pireg">
+            <tr>
+                <td class="c1" data-lang="">Use PI-Regulator:</td>
+                <td class="c2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="PIRegulatorIsEnabled"> <span data-lang="EnabledCheckBox">Enabled</span>
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="c1" data-lang="">Range</td>
+                <td class="c2">
+                    <input type="number" id="PIRegulatorRange" > %
+                </td>
+            </tr>
+            <tr>
+                <td class="c1" data-lang="">P Value</td>
+                <td class="c2">
+                    <input type="number" id="PIRegulatorPValue" >
+                </td>
+            </tr>
+            <tr>
+                <td class="c1" data-lang="">I Value</td>
+                <td class="c2">
+                    <input type="number" id="PIRegulatorIValue" >
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+            <button id="cancel" class="btn btn-large btn-default" data-lang="">Cancel</button>
+            <button id="save" class="btn btn-large btn-default" data-lang="">Save</button>
+        </div>
+    </footer>
+
+</div>
+<script>
+    require('./renderer-pireg.js');
+</script>
+</body>
+</html>
