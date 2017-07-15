@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const electron = require('electron')
 const ipc = electron.ipcRenderer;
 const $ = jQuery = require('jquery');
@@ -244,7 +245,8 @@ function uiUpdate() {
 
 function uiTranslate() {
     try {
-        lang = JSON.parse(fs.readFileSync('./i18n/' + app.getLocale() + '.json').toString());
+        const fp = path.join(__dirname, 'i18n', app.getLocale() + '.json');
+        lang = JSON.parse(fs.readFileSync(fp).toString());
         console.log('LANG', app.getLocale());
     } catch (err) {
         console.log(err);

@@ -44,6 +44,14 @@
   },
   "build": {
     "productName": "Arcticfox Config",
+    "files": [
+      "index.html",
+      "main.js",
+      "renderer.js",
+      "style.css",
+      "node_modules/",
+      "i18n/"
+    ],
     "mac": {
       "target": [
         "dmg"
