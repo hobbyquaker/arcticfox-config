@@ -196,7 +196,7 @@ let tfrWin;
 ipc.on('tfr', (event, data) => {
      tfrWin = new BrowserWindow({
         width: isDev ? 1200 : 545,
-        height: 340,
+        height: 360,
         show: false,
         modal: true,
         parent: mainWindow
