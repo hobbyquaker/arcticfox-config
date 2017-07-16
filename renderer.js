@@ -29,6 +29,12 @@ ipc.on('piregchange', (event, data) => {
     config.profiles[activeProfile].PIRegulatorIValue = data.PIRegulatorIValue;
 });
 
+ipc.on('tfrchange', (event, data) => {
+    console.log('tfrchange', data);
+    config.TFRTables[data.index] = data.table;
+    uiUpdate();
+});
+
 let activeProfile;
 
 function uiInitTabs() {
@@ -214,7 +220,9 @@ function uiUpdate() {
     $('#Product').html(config.ProductName);
 
     const $Material = $('#Material');
+    const $MaterialTable = $('#table-material');
     $Material.html('');
+    $MaterialTable.html('');
     $Material.append('<option value="1">Nickel 200</option>');
     $Material.append('<option value="2">Titanium 1</option>');
     $Material.append('<option value="3">SS 316</option>');
@@ -222,6 +230,12 @@ function uiUpdate() {
 
     config.TFRTables.forEach((tfr, index) => {
         $Material.append('<option value="' + (index + 5) + '">[TFR] ' + tfr.Name + '</option>');
+        $MaterialTable.append('<tr><td>' + tfr.Name + '</td><td><button class="tfr-button btn btn-default" data-tfr="' + index + '">Edit</button></td></tr>');
+    });
+
+    $('.tfr-button').click(function () {
+        const index = $(this).data('tfr');
+        ipc.send('tfr', {index, table: config.TFRTables[index]});
     });
 
     const $SelectedCurve = $('#SelectedCurve');

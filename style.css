@@ -76,3 +76,7 @@ tr:active {
 #table-pireg {
     padding-top: 28px;
 }
+
+#table-material {
+    width: 240px;
+}

@@ -55,6 +55,9 @@ Based on the work of [NFE Team](https://nfeteam.org/)
 * https://github.com/TBXin/NFirmwareEditor
 
 
+This software uses [Highcharts](http://www.highcharts.com/) which is free __only for non-commercial use__.
+
+
 ### License
 
 GPLv3

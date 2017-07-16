@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TFR Profile</title>
+    <link rel="stylesheet" href="node_modules/photonkit/dist/css/photon.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            padding: 12px;
+            width: 220px;
+        }
+        td {
+            padding: 0;
+            padding-bottom: 4px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<div class="window">
+
+    <header class="toolbar toolbar-header">
+        <h1 class="title" id="Product" data-lang="">TFR Profile</h1>
+    </header>
+
+    <div class="window-content">
+        <div style="display: flex; width: 100%">
+            <div>
+                <table>
+                    <tr>
+                        <td colspan="3" data-lang="TFRCurveEditor.NameLabel">Profile</td>
+                        <td class="t4">
+                            <input id="Name" type="text" size="4" maxlength="4">
+                        </td>
+                    </tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
+                    <tr>
+                        <td class="t1">°F:</td>
+                        <td class="t2">
+                            <input type="number" class="temp" id="temp0" min="0" max="800" step="1">
+                        </td>
+                        <td class="t3" data-lang="TFRCurveEditor.Factor:Label">Factor:</td>
+                        <td class="t4">
+                            <input type="number" class="factor" id="factor0" min="1" max="4" step="0.0001">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1">°F:</td>
+                        <td class="t2">
+                            <input type="number" class="temp" id="temp1" min="0" max="800" step="1">
+                        </td>
+                        <td class="t3" data-lang="TFRCurveEditor.Factor:Label">Factor:</td>
+                        <td class="t4">
+                            <input type="number" class="factor" id="factor1" min="1" max="4" step="0.0001">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1">°F:</td>
+                        <td class="t2">
+                            <input type="number" class="temp" id="temp2" min="0" max="800" step="1">
+                        </td>
+                        <td class="t3" data-lang="TFRCurveEditor.Factor:Label">Factor:</td>
+                        <td class="t4">
+                            <input type="number" class="factor" id="factor2" min="1" max="4" step="0.0001">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1">°F:</td>
+                        <td class="t2">
+                            <input type="number" class="temp" id="temp3" min="0" max="800" step="1">
+                        </td>
+                        <td class="t3" data-lang="TFRCurveEditor.Factor:Label">Factor:</td>
+                        <td class="t4">
+                            <input type="number" class="factor" id="factor3" min="1" max="4" step="0.0001">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1">°F:</td>
+                        <td class="t2">
+                            <input type="number" class="temp" id="temp4" min="0" max="800" step="1">
+                        </td>
+                        <td class="t3" data-lang="TFRCurveEditor.Factor:Label">Factor:</td>
+                        <td class="t4">
+                            <input type="number" class="factor" id="factor4" min="1" max="4" step="0.0001">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1">°F:</td>
+                        <td class="t2">
+                            <input type="number" class="temp" id="temp5" min="0" max="800" step="1">
+                        </td>
+                        <td class="t3" data-lang="TFRCurveEditor.Factor:Label">Factor:</td>
+                        <td class="t4">
+                            <input type="number" class="factor" id="factor5" min="1" max="4" step="0.0001">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1">°F:</td>
+                        <td class="t2">
+                            <input type="number" class="temp" id="temp6" min="0" max="800" step="1">
+                        </td>
+                        <td class="t3" data-lang="TFRCurveEditor.Factor:Label">Factor:</td>
+                        <td class="t4">
+                            <input type="number" class="factor" id="factor6" min="1" max="4" step="0.0001">
+                        </td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <div >
+                <div id="container" style="height: 270px; width: 320px"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions" style="display: flex; width: 100%; padding-left: 12px; padding-right: 12px;">
+            <div style="width: 50%">
+                <button id="export" class="btn btn-large btn-default" data-lang="TFRCurveEditor.ExportButton">Export</button>
+                <button id="import" class="btn btn-large btn-default" data-lang="TFRCurveEditor.ImportButton">Import</button>
+            </div>
+            <div style="width: 50%; text-align: right">
+                <button id="cancel" class="btn btn-large btn-default" data-lang="TFRCurveEditor.CancelButton">Cancel</button>
+                <button id="save" class="btn btn-large btn-default" data-lang="TFRCurveEditor.SaveButton">Save</button>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<script>
+    require('./renderer-tfr.js');
+</script>
+</body>
+</html>

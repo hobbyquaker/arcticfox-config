@@ -148,6 +148,32 @@ ipc.on('upload', (event, data) => {
     fox.writeConfiguration(data);
 });
 
+ipc.on('tfr', (event, data) => {
+    let tfrWin = new BrowserWindow({
+        width: isDev ? 1000 : 545,
+        height: 340,
+        show: false,
+        modal: true,
+        parent: mainWindow
+    });
+
+    tfrWin.on('ready-to-show', () => {
+        tfrWin.webContents.send('data', data);
+        if (isDev) tfrWin.webContents.openDevTools();
+        tfrWin.show();
+    });
+
+    tfrWin.on('close', () => {
+        tfrWin = null;
+    });
+
+    tfrWin.loadURL(url.format({
+        pathname: path.join(__dirname, 'tfr.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+});
+
 ipc.on('pireg', (event, data) => {
 
 
@@ -173,8 +199,10 @@ ipc.on('pireg', (event, data) => {
         protocol: 'file:',
         slashes: true
     }));
+});
 
-
+ipc.on('tfrchange', (event, data) => {
+    ipcSend('tfrchange', data);
 });
 
 ipc.on('piregchange', (event, data) => {
