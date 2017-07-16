@@ -148,9 +148,54 @@ ipc.on('upload', (event, data) => {
     fox.writeConfiguration(data);
 });
 
+ipc.on('tfrimport', (event, data) => {
+    console.log('tfrimport', data);
+
+    dialog.showOpenDialog(tfrWin, {
+        title: 'Import TFR Table',
+        filters: {
+            extensions: ['csv']
+        }
+    }, filename => {
+        filename = filename[0];
+        console.log(filename);
+        const lines = fs.readFileSync(filename).toString().replace(/\r/g, '').split('\n');
+        const table = [];
+        lines.forEach(line => {
+            let [temp, factor] = line.split(',');
+            temp = parseInt(temp, 10);
+            factor = parseFloat(factor);
+            if (factor) {
+                table.push({Temperature: temp, Factor: factor});
+            }
+        });
+        tfrWin.webContents.send('table', table);
+        console.log(table);
+    });
+});
+
+ipc.on('tfrexport', (event, data) => {
+    console.log('tfrexport', data);
+    const name = data.table.Name.replace(/\u0000/g, '');
+    dialog.showSaveDialog(tfrWin, {
+        title: 'Export TFR Table ' + name,
+        defaultPath: name + '.csv',
+        filters: {
+            extensions: ['csv']
+        }
+    }, filename => {
+        let out = '"Temperature (degF)","Electrical Resistivity"';
+        data.table.Points.forEach(p => {
+            out += ('\n' + p.Temperature + ',' + p.Factor);
+        });
+        fs.writeFileSync(filename, out);
+    });
+});
+
+let tfrWin;
 ipc.on('tfr', (event, data) => {
-    let tfrWin = new BrowserWindow({
-        width: isDev ? 1000 : 545,
+     tfrWin = new BrowserWindow({
+        width: isDev ? 1200 : 545,
         height: 340,
         show: false,
         modal: true,

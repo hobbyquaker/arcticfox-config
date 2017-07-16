@@ -14,9 +14,8 @@ $('#cancel').click(function () {
     window.close();
 });
 
-$('#save').click(function () {
-    let window = remote.getCurrentWindow();
-    ipc.send('tfrchange', {
+function data() {
+    return {
         index: tableIndex,
         table: {
             Name: ($('#Name').val() + '\u0000\u0000\u0000\u0000').substr(0, 4),
@@ -30,16 +29,21 @@ $('#save').click(function () {
                 {Temperature: parseInt($('#temp6').val(), 10), Factor: parseFloat($('#factor6').val())}
             ]
         }
-    });
+    }
+}
+
+$('#save').click(function () {
+    let window = remote.getCurrentWindow();
+    ipc.send('tfrchange', data());
     window.close();
 });
 
 $('#export').click(function () {
-    alert('... TODO'); // TODO
+    ipc.send('tfrexport', data());
 });
 
 $('#import').click(function () {
-    alert('... TODO'); // TODO
+    ipc.send('tfrimport');
 });
 
 
@@ -146,9 +150,21 @@ let tableIndex;
 ipc.on('data', (event, data) => {
     console.log(data);
     tableIndex = data.index;
-    $('#Name').val(data.table.Name.replace(/\u0000/, ''));
+    $('#Name').val(data.table.Name.replace(/\u0000/g, ''));
     chart.series[0].setData([]);
     data.table.Points.forEach((p, i) => {
+        $('#temp' + i).val(p.Temperature);
+        $('#factor' + i).val(p.Factor);
+        chart.series[0].addPoint([p.Temperature, p.Factor]);
+    });
+
+    chart.redraw();
+});
+
+ipc.on('table', (event, data) => {
+
+    chart.series[0].setData([]);
+    data.forEach((p, i) => {
         $('#temp' + i).val(p.Temperature);
         $('#factor' + i).val(p.Factor);
         chart.series[0].addPoint([p.Temperature, p.Factor]);
