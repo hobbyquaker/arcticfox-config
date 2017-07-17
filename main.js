@@ -278,7 +278,7 @@ ipc.on('tfrchange', (event, data) => {
 });
 
 ipc.on('pcchange', (event, data) => {
-    console.log('pcchange', data);
+    ipcSend('pcchange', data);
 });
 
 ipc.on('piregchange', (event, data) => {

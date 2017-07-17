@@ -37,6 +37,12 @@ ipc.on('tfrchange', (event, data) => {
     uiUpdate();
 });
 
+ipc.on('pcchange', (event, data) => {
+    console.log('pcchange', data);
+    config.PowerCurves[data.index] = data.table;
+    uiUpdate();
+});
+
 let activeProfile;
 
 function uiInitTabs() {
