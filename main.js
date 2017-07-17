@@ -219,6 +219,33 @@ ipc.on('tfr', (event, data) => {
     }));
 });
 
+let pcWin;
+ipc.on('pc', (event, data) => {
+    pcWin = new BrowserWindow({
+        width: isDev ? 1200 : 545,
+        height: 480,
+        show: false,
+        modal: true,
+        parent: mainWindow
+    });
+
+    pcWin.on('ready-to-show', () => {
+        pcWin.webContents.send('data', data);
+        if (isDev) pcWin.webContents.openDevTools();
+        pcWin.show();
+    });
+
+    pcWin.on('close', () => {
+        pcWin = null;
+    });
+
+    pcWin.loadURL(url.format({
+        pathname: path.join(__dirname, 'power.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+});
+
 ipc.on('pireg', (event, data) => {
 
 
@@ -248,6 +275,10 @@ ipc.on('pireg', (event, data) => {
 
 ipc.on('tfrchange', (event, data) => {
     ipcSend('tfrchange', data);
+});
+
+ipc.on('pcchange', (event, data) => {
+    console.log('pcchange', data);
 });
 
 ipc.on('piregchange', (event, data) => {
@@ -280,4 +311,3 @@ function ipcSend(key, data) {
         app.quit();
     }
 }
-

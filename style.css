@@ -80,3 +80,8 @@ tr:active {
 #table-material {
     width: 240px;
 }
+
+.sparkline {
+    height: 24px;
+    width: 160px;
+}

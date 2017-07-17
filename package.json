@@ -54,6 +54,8 @@
       "renderer-pireg.js",
       "tfr.html",
       "renderer-tfr.js",
+      "power.html",
+      "renderer-power.js",
       "style.css",
       "node_modules/",
       "i18n/"

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Power Curve</title>
+    <link rel="stylesheet" href="node_modules/photonkit/dist/css/photon.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            padding: 12px;
+            width: 220px;
+        }
+        td {
+            padding: 0;
+            padding-bottom: 4px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<div class="window">
+
+    <header class="toolbar toolbar-header">
+        <h1 class="title" id="Product" data-lang="">Power Curve</h1>
+    </header>
+
+    <div class="window-content">
+        <div style="display: flex; width: 100%">
+            <div>
+                <table>
+                    <tr>
+                        <td colspan="3" data-lang="PowerCurveEditor.NameLabel">Power Curve Name:</td>
+                        <td class="t4">
+                            <input id="Name" type="text" size="8" maxlength="8">
+                        </td>
+                    </tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time0" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent0" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time1" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent1" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time2" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent2" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time3" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent3" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time4" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent4" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time5" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent5" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time6" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent6" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time7" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent7" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time8" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent8" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time9" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent9" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time10" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent10" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="t1" data-lang="PowerCurveEditor.TimeLabel">Time:</td>
+                        <td class="t2">
+                            <input type="number" class="time" id="time11" min="0" max="25" step="0.1">
+                        </td>
+                        <td class="t3" data-lang="PowerCurveEditor.PercentLabel">Percent:</td>
+                        <td class="t4">
+                            <input type="number" class="percent" id="percent11" min="0" max="100" step="1">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div >
+                <div id="container" style="padding-top: 20px; height: 320px; width: 320px"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions" style="width: 100%; padding-left: 12px; padding-right: 12px;">
+            <button id="cancel" class="btn btn-large btn-default" data-lang="PowerCurveEditor.CancelButton">Cancel</button>
+            <button id="save" class="btn btn-large btn-default" data-lang="PowerCurveEditor.SaveButton">Save</button>
+        </div>
+    </footer>
+
+</div>
+<script>
+    require('./renderer-power.js');
+</script>
+</body>
+</html>

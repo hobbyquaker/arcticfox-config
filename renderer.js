@@ -4,6 +4,8 @@ const url = require('url');
 const electron = require('electron');
 const ipc = electron.ipcRenderer;
 const $ = jQuery = require('jquery');
+const Highcharts = require('highcharts');
+
 
 let app = electron.remote.app;
 let config;
@@ -236,6 +238,93 @@ function uiUpdate() {
     $('.tfr-button').click(function () {
         const index = $(this).data('tfr');
         ipc.send('tfr', {index, table: config.TFRTables[index]});
+    });
+
+    const $PowerTable = $('#table-power');
+    $PowerTable.html('');
+    Highcharts.setOptions({
+        chart: {
+            margin: [0, 0, 0, 0],
+            style: {
+                overflow: 'visible'
+            }
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        legend: {
+            enabled: false
+        },
+        xAxis: {
+            labels: {
+                enabled: false
+            },
+            tickLength: 0,
+            min: 0,
+            max: 8
+        },
+        yAxis: {
+            title: {
+                text: null
+            },
+            maxPadding: 0,
+            minPadding: 0,
+            gridLineWidth: 0,
+            ticks: false,
+            endOnTick: false,
+            labels: {
+                enabled: false
+            },
+            min: 0,
+            max: 250
+        },
+        tooltip: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                enableMouseTracking: false,
+                lineWidth: 1,
+                shadow: false,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                marker: {
+                    enabled: false
+                }
+            }
+        }
+    });
+
+
+    config.PowerCurves.forEach((pc, index) => {
+        $PowerTable.append('<tr><td style="width: 80px;">' + pc.Name + '</td><td style="width: 160px;"><div class="sparkline" id="pc' + index + '"></div></td><td><button class="power-button btn btn-default" data-pc="' + index + '">Edit</button></td></tr>')
+        const data = [];
+        pc.Points.forEach(p => {
+            data.push({x: p.Time, y: p.Percent});
+        });
+        console.log(data);
+        new Highcharts.Chart({
+            chart: {
+                renderTo: 'pc' + index,
+            },
+            series: [{
+                fillColor: 'rgba(124, 181, 236, 0.3)',
+                type: 'area',
+                name: pc.Name,
+                data
+            }]
+        });
+    });
+
+    $('.power-button').click(function () {
+        const index = $(this).data('pc');
+        ipc.send('pc', {index, table: config.PowerCurves[index]});
     });
 
     const $SelectedCurve = $('#SelectedCurve');
