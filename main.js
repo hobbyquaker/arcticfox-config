@@ -1,19 +1,19 @@
-const electron =            require('electron');
-const app =                 electron.app;
-const Menu =                electron.Menu;
-const ipc =                 electron.ipcMain;
-const BrowserWindow =       electron.BrowserWindow;
-const dialog =              electron.dialog;
+const electron = require('electron');
+const app = electron.app;
+const Menu = electron.Menu;
+const ipc = electron.ipcMain;
+const BrowserWindow = electron.BrowserWindow;
+const dialog = electron.dialog;
 
-const storage =             require('electron-json-storage');
-const windowStateKeeper =   require('electron-window-state');
-const isDev =               require('electron-is-dev');
+const storage = require('electron-json-storage');
+const windowStateKeeper = require('electron-window-state');
+const isDev = require('electron-is-dev');
 
-const path =                require('path');
-const url =                 require('url');
-const fs =                  require('fs');
-const async =               require('async');
-const fox =                 require('arcticfox');
+const path = require('path');
+const url = require('url');
+const fs = require('fs');
+const xml2js = require('xml2js');
+const fox = require('arcticfox');
 
 let mainWindow;
 let menu;
@@ -189,6 +189,74 @@ ipc.on('tfrexport', (event, data) => {
             out += ('\n' + p.Temperature + ',' + p.Factor);
         });
         fs.writeFileSync(filename, out);
+    });
+});
+
+ipc.on('batexport', (event, data) => {
+    const name = data.table.Name.replace(/\u0000/g, '');
+    const obj = {
+        BatteryProfile: {
+            Cutoff: data.table.Cutoff,
+            Data: {
+                Point: [
+
+                ]
+            }
+
+
+        }
+    };
+    data.table.PercentsVoltage.forEach(p => {
+        obj.BatteryProfile.Data.Point.push({
+            $: {
+                Percent: p.Percents,
+                Voltage: p.Voltage
+            }
+        });
+    });
+    const builder = new xml2js.Builder({
+        headless: true
+    });
+    const xml = builder.buildObject(obj);
+
+    dialog.showSaveDialog(tfrWin, {
+        title: 'Export Battery Profile ' + name,
+        defaultPath: name + '.xml'
+    }, filename => {
+        fs.writeFileSync(filename, xml);
+    });
+});
+
+ipc.on('batimport', (event, data) => {
+    console.log('batimport', data);
+
+    dialog.showOpenDialog(batWin, {
+        title: 'Import Battery Profile'
+    }, filename => {
+        filename = filename[0];
+        console.log(filename);
+        const xml = fs.readFileSync(filename).toString();
+
+        xml2js.parseString(xml, function (err, result) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log(JSON.stringify(result, null, '  '));
+            const data = {
+                table: {
+                    Cutoff: result.BatteryProfile.Cutoff,
+                    PercentsVoltage: []
+                }
+            };
+            result.BatteryProfile.Data[0].Point.forEach(p => {
+                data.table.PercentsVoltage.push({Percents: parseInt(p.$.Percent, 10), Voltage: parseFloat(p.$.Voltage)});
+            });
+            batWin.webContents.send('batimport', data);
+            console.log(JSON.stringify(data, null, '  '));
+        });
+
+
     });
 });
 

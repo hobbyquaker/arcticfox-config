@@ -169,15 +169,14 @@ ipc.on('data', (event, data) => {
     chart.redraw();
 });
 
-ipc.on('table', (event, data) => {
-
+ipc.on('batimport', (event, data) => {
     chart.series[0].setData([]);
-    data.forEach((p, i) => {
-        $('#percents' + i).val(p.Percents);
-        $('#voltage' + i).val(p.Voltage);
+    $('#Cutoff').val(data.table.Cutoff);
+    data.table.PercentsVoltage.reverse().forEach((p, i) => {
+        $('#percents' + (10 - i)).val(p.Percents);
+        $('#voltage' + (10 - i)).val(p.Voltage);
         chart.series[0].addPoint([p.Percents, p.Voltage]);
     });
-
     chart.redraw();
 });
 
