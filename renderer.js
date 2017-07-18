@@ -43,6 +43,11 @@ ipc.on('pcchange', (event, data) => {
     uiUpdate();
 });
 
+ipc.on('batchange', (event, data) => {
+    console.log('batchange', data);
+    config.CustomBatteryProfiles[data.index] = data.table;
+});
+
 let activeProfile;
 
 function uiInitTabs() {
@@ -217,6 +222,19 @@ function uiInitButtons() {
 
     $('#reset-settings').click(function () {
         alert('... TODO'); // TODO
+    });
+
+    $('#BatteryModel').change(function () {
+        if ($(this).val() > 0) {
+            $('#battery-edit').show();
+        } else {
+            $('#battery-edit').hide();
+        }
+    });
+
+    $('#battery-edit').click(function () {
+        const index = $('#BatteryModel').val() - 1;
+        ipc.send('bat', {index, table: config.CustomBatteryProfiles[index]});
     });
 }
 

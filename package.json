@@ -56,6 +56,8 @@
       "renderer-tfr.js",
       "power.html",
       "renderer-power.js",
+      "bat.html",
+      "renderer-bat.js",
       "style.css",
       "node_modules/",
       "i18n/"

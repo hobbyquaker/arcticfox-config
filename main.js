@@ -192,6 +192,33 @@ ipc.on('tfrexport', (event, data) => {
     });
 });
 
+let batWin;
+ipc.on('bat', (event, data) => {
+    batWin = new BrowserWindow({
+        width: isDev ? 1200 : 545,
+        height: 520,
+        show: false,
+        modal: true,
+        parent: mainWindow
+    });
+
+    batWin.on('ready-to-show', () => {
+        batWin.webContents.send('data', data);
+        if (isDev) batWin.webContents.openDevTools();
+        batWin.show();
+    });
+
+    batWin.on('close', () => {
+        batWin = null;
+    });
+
+    batWin.loadURL(url.format({
+        pathname: path.join(__dirname, 'bat.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+});
+
 let tfrWin;
 ipc.on('tfr', (event, data) => {
      tfrWin = new BrowserWindow({
@@ -280,6 +307,11 @@ ipc.on('tfrchange', (event, data) => {
 ipc.on('pcchange', (event, data) => {
     ipcSend('pcchange', data);
 });
+
+ipc.on('batchange', (event, data) => {
+    ipcSend('batchange', data);
+});
+
 
 ipc.on('piregchange', (event, data) => {
     ipcSend('piregchange', data);

@@ -2,6 +2,10 @@ body {
     font: caption;
 }
 
+tr td {
+    height: 28px;
+}
+
 .tab-group {
     height: 24px;
     width: 100%;
