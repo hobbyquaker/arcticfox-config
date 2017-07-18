@@ -1,6 +1,6 @@
 {
   "name": "arcticfox-config",
-  "version": "0.9.0-beta.5",
+  "version": "0.9.0-beta.6",
   "private": true,
   "description": "Configuration Tool for Vape Battery Mods with Arcticfox Firmware. Works on MacOS and Linux.",
   "main": "main.js",
