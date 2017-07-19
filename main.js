@@ -15,7 +15,6 @@ const fs = require('fs');
 const xml2js = require('xml2js');
 const fox = require('arcticfox');
 const AfcFile = require('./afcfile');
-const defaultConf = require('./default.afc.json');
 
 const afc = new AfcFile();
 
@@ -23,22 +22,7 @@ let mainWindow;
 let menu;
 let debug;
 
-let menuTemplate = [
-    {
-
-        label: 'Tools',
-        submenu: [
-
-        ]
-    },
-    {
-        label: 'Settings',
-        submenu: [
-
-        ]
-    }
-
-];
+let menuTemplate = [];
 
 if (process.platform === 'darwin') {
     menuTemplate.unshift({
@@ -409,7 +393,6 @@ ipc.on('batchange', (event, data) => {
     ipcSend('batchange', data);
 });
 
-
 ipc.on('piregchange', (event, data) => {
     ipcSend('piregchange', data);
 });
@@ -430,7 +413,6 @@ app.on('activate', () => {
         createWindow();
     }
 });
-
 
 function ipcSend(key, data) {
     if (mainWindow) {

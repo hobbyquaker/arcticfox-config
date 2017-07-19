@@ -209,11 +209,7 @@ function uiInitButtons() {
     $('#tc-setup').click(function () {
         ipc.send('pireg', config.profiles[activeProfile]);
     });
-/*
-    $('#configuration-menu').click(function () {
-        alert('... TODO'); // TODO
-    });
-*/
+
     $('#download-settings').click(function () {
         ipc.send('download');
     });
@@ -223,7 +219,9 @@ function uiInitButtons() {
     });
 
     $('#reset-settings').click(function () {
-        alert('... TODO'); // TODO
+        config = JSON.parse(fs.readFileSync('default.afc.json'));
+        ipc.send('upload', config);
+        uiUpdate();
     });
 
     $('#BatteryModel').change(function () {
@@ -423,7 +421,8 @@ function uiInitMenu() {
     configurationMenu.append(new MenuItem({
         label: _('ConfigurationMenu.New'),
         click: function () {
-            alert('Todo')
+            config = JSON.parse(fs.readFileSync('default.afc.json'));
+            uiUpdate();
         }
     }));
     configurationMenu.append(new MenuItem({
