@@ -8,10 +8,8 @@
 
 > Configuration Tool for Vape Battery Mods with Arcticfox Firmware. Works on MacOS and Linux.
 
-**Warning**: This is work in progress, one could call it a "first beta version". Several things are still missing, there
-are probably a lot of bugs... 
-
 ![Screenshot](screenshot.png "Screenshot")
+![Screenshot](screenshot2.png "Screenshot")
 
 
 ### Download
