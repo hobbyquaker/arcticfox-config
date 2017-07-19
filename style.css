@@ -89,3 +89,35 @@ tr:active {
     height: 24px;
     width: 160px;
 }
+
+#startscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 18px);
+    z-index: 10000;
+    background-color: white;
+    text-align: center;
+}
+
+#startscreen a:hover {
+    color: blue;
+    text-decoration: none;
+}
+
+#startscreen a:visited {
+    color: blue;
+    text-decoration: underline;
+}
+
+#startscreen a {
+    color: blue;
+    text-decoration: underline;
+}
+
+
+
+#version {
+    font-size: 10px;
+}

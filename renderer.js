@@ -5,6 +5,7 @@ const electron = require('electron');
 const ipc = electron.ipcRenderer;
 const $ = jQuery = require('jquery');
 const Highcharts = require('highcharts');
+const pkg = require('./package.json')
 
 const {remote} = electron;
 const {Menu, MenuItem} = electron.remote;
@@ -48,6 +49,10 @@ ipc.on('pcchange', (event, data) => {
 ipc.on('batchange', (event, data) => {
     console.log('batchange', data);
     config.CustomBatteryProfiles[data.index] = data.table;
+});
+
+ipc.on('foxfirmware', (event, data) => {
+    $('#foxfirmware').html('[' + data + ']');
 });
 
 let activeProfile;
@@ -243,6 +248,8 @@ function uiUpdate() {
         return;
     }
 
+    $('#startscreen').hide();
+
     $('#Product').html(config.ProductName);
 
     const $Material = $('#Material');
@@ -382,9 +389,9 @@ function uiUpdate() {
 
 function uiTranslate() {
     try {
-        const fp = path.join(__dirname, 'i18n', app.getLocale() + '.json');
+        const locale = app.getLocale().substr(0, 2);
+        const fp = path.join(__dirname, 'i18n', locale + '.json');
         lang = JSON.parse(fs.readFileSync(fp).toString());
-        console.log('LANG', app.getLocale());
     } catch (err) {
         console.log(err);
         return;
@@ -448,11 +455,26 @@ function uiInitMenu() {
 }
 
 function uiInit() {
+    $('#version').html('v' + pkg.version);
     uiTranslate();
     uiInitButtons();
     uiInitMenu();
     uiInitTabs();
     uiInitChangeHandlers();
+
+    $('#link-new').click(function () {
+        config = JSON.parse(fs.readFileSync('default.afc.json'));
+        uiUpdate();
+    });
+
+    $('#link-open').click(function () {
+        ipc.send('openconfig');
+    });
+
+    $('#link-download').click(function () {
+        console.log('ipc download!');
+        ipc.send('download');
+    });
 
     $('.fox-val').change(function () {
         const id = $(this).attr('id');

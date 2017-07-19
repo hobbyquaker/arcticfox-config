@@ -21,6 +21,8 @@ const afc = new AfcFile();
 let mainWindow;
 let menu;
 let debug;
+let autoconnect = true;
+let lang = {};
 
 let menuTemplate = [];
 
@@ -105,14 +107,27 @@ function createWindow () {
     });
 }
 
-fox.on('connect', () => {
-    ipcSend('connect', true);
+function download() {
     fox.readConfiguration((err, data) => {
         if (err) {
-            throw err;
+            console.log(err.toString());
+            if (err.toString === 'Outdated Toolbox') {
+                dialog.showErrorBox('Outdated Toolbox', _('Message.OutdatedToolbox'))
+            } else if (err.toString === 'Outdated Firmware') {
+                dialog.showErrorBox('Outdated Firmware', _('Message.ConnectDevice'))
+            } else {
+                throw err;
+            }
         }
         ipcSend('config', data);
     });
+}
+
+fox.on('connect', () => {
+    ipcSend('connect', true);
+    if (autoconnect) {
+        download();
+    }
 });
 
 fox.on('close', () => {
@@ -123,15 +138,6 @@ fox.on('error', err => {
     debug(err);
 });
 
-ipc.on('download', () => {
-    fox.readConfiguration((err, data) => {
-        if (err) {
-            throw err;
-        }
-        ipcSend('config', data);
-    });
-});
-
 ipc.on('upload', (event, data) => {
     fox.writeConfiguration(data);
 });
@@ -140,16 +146,16 @@ ipc.on('openconfig', (event, data) => {
     electron.dialog.showOpenDialog(batWin, {
         title: 'Open Configuration'
     }, filename => {
-        console.log(filename);
-        const xml = afc.decodeAfc(fs.readFileSync(filename[0]));
-
-        afc.xml2conf(xml, (err, res) => {
-            if (err) {
-                throw err;
-            } else {
-                ipcSend('config', res);
-            }
-        });
+        if (filename) {
+            const xml = afc.decodeAfc(fs.readFileSync(filename[0]));
+            afc.xml2conf(xml, (err, res) => {
+                if (err) {
+                    throw err;
+                } else {
+                    ipcSend('config', res);
+                }
+            });
+        }
     });
 });
 
@@ -170,20 +176,20 @@ ipc.on('tfrimport', (event, data) => {
             extensions: ['csv']
         }
     }, filename => {
-        filename = filename[0];
-        console.log(filename);
-        const lines = fs.readFileSync(filename).toString().replace(/\r/g, '').split('\n');
-        const table = [];
-        lines.forEach(line => {
-            let [temp, factor] = line.split(',');
-            temp = parseInt(temp, 10);
-            factor = parseFloat(factor);
-            if (factor) {
-                table.push({Temperature: temp, Factor: factor});
-            }
-        });
-        tfrWin.webContents.send('table', table);
-        console.log(table);
+        if (filename) {
+            filename = filename[0];
+            const lines = fs.readFileSync(filename).toString().replace(/\r/g, '').split('\n');
+            const table = [];
+            lines.forEach(line => {
+                let [temp, factor] = line.split(',');
+                temp = parseInt(temp, 10);
+                factor = parseFloat(factor);
+                if (factor) {
+                    table.push({Temperature: temp, Factor: factor});
+                }
+            });
+            tfrWin.webContents.send('table', table);
+        }
     });
 });
 
@@ -246,30 +252,27 @@ ipc.on('batimport', (event, data) => {
     dialog.showOpenDialog(batWin, {
         title: 'Import Battery Profile'
     }, filename => {
-        filename = filename[0];
-        console.log(filename);
-        const xml = fs.readFileSync(filename).toString();
+        if (filename) {
+            filename = filename[0];
+            const xml = fs.readFileSync(filename).toString();
 
-        xml2js.parseString(xml, function (err, result) {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            console.log(JSON.stringify(result, null, '  '));
-            const data = {
-                table: {
-                    Cutoff: result.BatteryProfile.Cutoff,
-                    PercentsVoltage: []
+            xml2js.parseString(xml, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    return;
                 }
-            };
-            result.BatteryProfile.Data[0].Point.forEach(p => {
-                data.table.PercentsVoltage.push({Percents: parseInt(p.$.Percent, 10), Voltage: parseFloat(p.$.Voltage)});
+                const data = {
+                    table: {
+                        Cutoff: result.BatteryProfile.Cutoff,
+                        PercentsVoltage: []
+                    }
+                };
+                result.BatteryProfile.Data[0].Point.forEach(p => {
+                    data.table.PercentsVoltage.push({Percents: parseInt(p.$.Percent, 10), Voltage: parseFloat(p.$.Voltage)});
+                });
+                batWin.webContents.send('batimport', data);
             });
-            batWin.webContents.send('batimport', data);
-            console.log(JSON.stringify(data, null, '  '));
-        });
-
-
+        }
     });
 });
 
@@ -397,11 +400,27 @@ ipc.on('piregchange', (event, data) => {
     ipcSend('piregchange', data);
 });
 
+ipc.on('download', () => {
+    console.log('ipc download', fox.connected)
+    if (fox.connected) {
+        download();
+    } else {
+        dialog.showErrorBox('No compatible USB Device', _('Message.NoCompatibleUSBDevice'))
+    }
+});
+
 app.on('ready', () => {
     createWindow();
     setTimeout(function () {
-        fox.connect();
+        ipcSend('foxfirmware', fox.minimumSupportedBuildNumber);
     }, 1000);
+    setTimeout(function () {
+        fox.connect();
+    }, 1500);
+    setTimeout(function () {
+        autoconnect = false;
+    }, 2000);
+
 });
 
 app.on('window-all-closed', () => {
@@ -422,3 +441,23 @@ function ipcSend(key, data) {
         app.quit();
     }
 }
+
+try {
+    const locale = app.getLocale().substr(0, 2);
+    const fp = path.join(__dirname, 'i18n', locale + '.json');
+    lang = JSON.parse(fs.readFileSync(fp).toString());
+    console.log('LANG',locale);
+} catch (err) {
+    console.log(err);
+    return;
+}
+
+function _(key) {
+    if (lang && lang[key]) {
+        return lang[key];
+    } else {
+        return key;
+    }
+}
+
+

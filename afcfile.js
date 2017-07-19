@@ -181,7 +181,6 @@ class AfcFile {
     }
 
     conf2xml(config) {
-
         function lineContent(attr) {
             return enumLineContent[config[attr]] + (config[attr + 'Puff'] ? ', FireTimeMask' : '');
         }
