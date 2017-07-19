@@ -424,6 +424,12 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
+    fox.close();
+    app.quit();
+});
+
+app.on('will-quit', () => {
+    fox.close();
     app.quit();
 });
 
