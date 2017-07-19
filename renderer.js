@@ -224,7 +224,7 @@ function uiInitButtons() {
     });
 
     $('#reset-settings').click(function () {
-        config = JSON.parse(fs.readFileSync('default.afc.json'));
+        config = JSON.parse(fs.readFileSync(path.join(__dirname, 'default.afc.json')));
         ipc.send('upload', config);
         uiUpdate();
     });
@@ -428,7 +428,7 @@ function uiInitMenu() {
     configurationMenu.append(new MenuItem({
         label: _('ConfigurationMenu.New'),
         click: function () {
-            config = JSON.parse(fs.readFileSync('default.afc.json'));
+            config = JSON.parse(fs.readFileSync(path.join(__dirname, 'default.afc.json')));
             uiUpdate();
         }
     }));
@@ -463,7 +463,7 @@ function uiInit() {
     uiInitChangeHandlers();
 
     $('#link-new').click(function () {
-        config = JSON.parse(fs.readFileSync('default.afc.json'));
+        config = JSON.parse(fs.readFileSync(path.join(__dirname, 'default.afc.json')));
         uiUpdate();
     });
 
