@@ -28,7 +28,7 @@
     "electron-rebuild": "^1.5.11"
   },
   "dependencies": {
-    "arcticfox": "^9.0.0",
+    "arcticfox": "^9.0.4",
     "arcticfox-encryption": "^1.0.0",
     "async": "^2.1.4",
     "electron-is-dev": "^0.2.0",
