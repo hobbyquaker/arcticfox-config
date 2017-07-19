@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "arcticfox": "^9.0.0",
+    "arcticfox-encryption": "^1.0.0",
     "async": "^2.1.4",
     "electron-is-dev": "^0.2.0",
     "electron-json-storage": "^3.0.0",
@@ -60,6 +61,8 @@
       "bat.html",
       "renderer-bat.js",
       "style.css",
+      "afcfile.js",
+      "default.afc.json",
       "node_modules/",
       "i18n/"
     ],

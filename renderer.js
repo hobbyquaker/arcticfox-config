@@ -6,6 +6,8 @@ const ipc = electron.ipcRenderer;
 const $ = jQuery = require('jquery');
 const Highcharts = require('highcharts');
 
+const {remote} = electron;
+const {Menu, MenuItem} = electron.remote;
 
 let app = electron.remote.app;
 let config;
@@ -207,11 +209,11 @@ function uiInitButtons() {
     $('#tc-setup').click(function () {
         ipc.send('pireg', config.profiles[activeProfile]);
     });
-
+/*
     $('#configuration-menu').click(function () {
         alert('... TODO'); // TODO
     });
-
+*/
     $('#download-settings').click(function () {
         ipc.send('download');
     });
@@ -415,9 +417,41 @@ function _(key) {
     }
 }
 
+function uiInitMenu() {
+    const configurationMenu = new Menu();
+
+    configurationMenu.append(new MenuItem({
+        label: _('ConfigurationMenu.New'),
+        click: function () {
+            alert('Todo')
+        }
+    }));
+    configurationMenu.append(new MenuItem({
+        label: _('ConfigurationMenu.Open'),
+        click: function () {
+            ipc.send('openconfig');
+        }
+    }));
+    configurationMenu.append(new MenuItem({
+        label: _('ConfigurationMenu.SaveAs'),
+        click: function () {
+            ipc.send('saveconfig', config);
+        }
+    }));
+
+    $('#configuration-menu').click(function () {
+        const offset = $('#configuration-menu').offset();
+        configurationMenu.popup(remote.getCurrentWindow(), {
+            x: Math.floor(offset.left),
+            y: 50
+        });
+    });
+}
+
 function uiInit() {
     uiTranslate();
     uiInitButtons();
+    uiInitMenu();
     uiInitTabs();
     uiInitChangeHandlers();
 

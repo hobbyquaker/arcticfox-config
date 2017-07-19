@@ -14,6 +14,10 @@ const url = require('url');
 const fs = require('fs');
 const xml2js = require('xml2js');
 const fox = require('arcticfox');
+const AfcFile = require('./afcfile');
+const defaultConf = require('./default.afc.json');
+
+const afc = new AfcFile();
 
 let mainWindow;
 let menu;
@@ -146,6 +150,31 @@ ipc.on('download', () => {
 
 ipc.on('upload', (event, data) => {
     fox.writeConfiguration(data);
+});
+
+ipc.on('openconfig', (event, data) => {
+    electron.dialog.showOpenDialog(batWin, {
+        title: 'Open Configuration'
+    }, filename => {
+        console.log(filename);
+        const xml = afc.decodeAfc(fs.readFileSync(filename[0]));
+
+        afc.xml2conf(xml, (err, res) => {
+            if (err) {
+                throw err;
+            } else {
+                ipcSend('config', res);
+            }
+        });
+    });
+});
+
+ipc.on('saveconfig', (event, data) => {
+    electron.dialog.showSaveDialog(batWin, {
+        title: 'Save Configuration'
+    }, filename => {
+        fs.writeFileSync(filename, afc.encodeAfc(afc.conf2xml(data)));
+    });
 });
 
 ipc.on('tfrimport', (event, data) => {
