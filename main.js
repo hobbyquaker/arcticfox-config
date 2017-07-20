@@ -114,7 +114,7 @@ function download() {
             if (err.toString() === 'Error: Outdated Toolbox') {
                 dialog.showErrorBox('Incompatible Firmware', _('Message.OutdatedToolbox'))
             } else if (err.toString() === 'Error: Outdated Firmware') {
-                dialog.showErrorBox('Incompatible Firmware', _('Message.ConnectDevice'))
+                dialog.showErrorBox('Incompatible Firmware', _('Message.ConnectDevice').replace('{0}', fox.minimumSupportedBuildNumber))
             } else {
                 throw err;
             }
