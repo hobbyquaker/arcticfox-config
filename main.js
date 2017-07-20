@@ -112,9 +112,9 @@ function download() {
         if (err) {
             console.log(err.toString());
             if (err.toString === 'Outdated Toolbox') {
-                dialog.showErrorBox('Outdated Toolbox', _('Message.OutdatedToolbox'))
+                dialog.showErrorBox('Error: Outdated Toolbox', _('Message.OutdatedToolbox'))
             } else if (err.toString === 'Outdated Firmware') {
-                dialog.showErrorBox('Outdated Firmware', _('Message.ConnectDevice'))
+                dialog.showErrorBox('Error: Outdated Firmware', _('Message.ConnectDevice'))
             } else {
                 throw err;
             }
@@ -307,7 +307,7 @@ let tfrWin;
 ipc.on('tfr', (event, data) => {
      tfrWin = new BrowserWindow({
         width: isDev ? 1200 : 545,
-        height: 360,
+        height: 380,
         show: false,
         modal: true,
         parent: mainWindow
@@ -334,7 +334,7 @@ let pcWin;
 ipc.on('pc', (event, data) => {
     pcWin = new BrowserWindow({
         width: isDev ? 1200 : 545,
-        height: 480,
+        height: 520,
         show: false,
         modal: true,
         parent: mainWindow
