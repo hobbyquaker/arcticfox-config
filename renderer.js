@@ -51,8 +51,10 @@ ipc.on('batchange', (event, data) => {
     config.CustomBatteryProfiles[data.index] = data.table;
 });
 
+let foxfirmware = '';
 ipc.on('foxfirmware', (event, data) => {
-    $('#foxfirmware').html('[' + data + ']');
+    foxfirmware = data;
+    $('[data-lang="Message.ConnectDevice"]').html(lang['Message.ConnectDevice'].replace('{0}', foxfirmware).replace(/\n/g, '<br>'));
 });
 
 let activeProfile;
@@ -398,7 +400,10 @@ function uiTranslate() {
     }
     $('[data-lang]').each(function () {
         const key = $(this).data('lang');
-        const phrase = lang[key];
+        let phrase = lang[key];
+        if (key === 'Message.ConnectDevice') {
+            phrase = phrase.replace('{0}', foxfirmware);
+        }
         console.log('i18n', key, phrase);
         if (phrase) {
             $(this).html(phrase);
