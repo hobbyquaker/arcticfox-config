@@ -111,10 +111,10 @@ function download() {
     fox.readConfiguration((err, data) => {
         if (err) {
             console.log(err.toString());
-            if (err.toString === 'Outdated Toolbox') {
-                dialog.showErrorBox('Error: Outdated Toolbox', _('Message.OutdatedToolbox'))
-            } else if (err.toString === 'Outdated Firmware') {
-                dialog.showErrorBox('Error: Outdated Firmware', _('Message.ConnectDevice'))
+            if (err.toString === 'Error: Outdated Toolbox') {
+                dialog.showErrorBox('Incompatible Firmware', _('Message.OutdatedToolbox'))
+            } else if (err.toString === 'Error: Outdated Firmware') {
+                dialog.showErrorBox('Incompatible Firmware', _('Message.ConnectDevice'))
             } else {
                 throw err;
             }
