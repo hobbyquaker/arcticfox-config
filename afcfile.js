@@ -478,6 +478,8 @@ class AfcFile {
             'Model.Advanced.ShuntCorrection': config.ShuntCorrection,
             'Model.Advanced.BatteryModel': enumBatteryModel[config.BatteryModel],
 
+            'Model.Advanced.ChargingCurrent': config.ChargingCurrent,
+
             'Model.Advanced.CustomBatteryProfiles[0].Name': config.CustomBatteryProfiles[0].Name,
             'Model.Advanced.CustomBatteryProfiles[0].Data[0].Percents': config.CustomBatteryProfiles[0].PercentsVoltage[0].Percents,
             'Model.Advanced.CustomBatteryProfiles[0].Data[0].Voltage': Math.round(config.CustomBatteryProfiles[0].PercentsVoltage[0].Voltage * 100),
@@ -1320,6 +1322,8 @@ class AfcFile {
 
             'Model.Advanced.ShuntCorrection': (config, val) => config.ShuntCorrection = Number(val),
             'Model.Advanced.BatteryModel': (config, val) => config.BatteryModel = re(enumBatteryModel, val),
+
+            'Model.Advanced.ChargingCurrent': (config, val) => config.ChargingCurrent = Number(val),
 
             'Model.Advanced.CustomBatteryProfiles[0].Name': (config, val) => config.CustomBatteryProfiles[0].Name = val,
             'Model.Advanced.CustomBatteryProfiles[0].Data[0].Percents': (config, val) => config.CustomBatteryProfiles[0].PercentsVoltage[0].Percents = Number(val),
