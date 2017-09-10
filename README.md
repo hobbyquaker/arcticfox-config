@@ -23,8 +23,14 @@ arcticfox-config-x.x.x.dmg file.
 
 #### Linux
 
-On the [latest release page](https://github.com/hobbyquaker/arcticfox-config/releases/latest) you can find a .deb file 
-for Ubuntu and Debian and a .tar.gz that should work on other distributions.
+~~On the [latest release page](https://github.com/hobbyquaker/arcticfox-config/releases/latest) you can find a .deb file 
+for Ubuntu and Debian and a .tar.gz that should work on other distributions.~~
+
+Until now there is now ready to use Linux build available for download. But you can build it yourself, for instructions
+see https://github.com/hobbyquaker/arcticfox-config/issues/23
+
+For USB access with an unprivileged user you need UDEV rules, see 
+https://github.com/hobbyquaker/arcticfox-config/issues/25
 
 
 ### Usage
