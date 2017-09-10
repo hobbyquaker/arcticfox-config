@@ -466,6 +466,10 @@ class AfcFile {
             'Model.Interface.ClockOnClickInStealth': config.ClockOnClickInStealth,
             'Model.Interface.FiveClicks': enumFiveClicks[config.FiveClicks],
 
+            'Model.Interface.TemperatureUnits': config.TemperatureUnits,
+            'Model.Interface.DateFormat': config.DateFormat,
+            'Model.Interface.TimeFormat': config.TimeFormat,
+
             'Model.Counters.PuffsCount': config.PuffsCount,
             'Model.Counters.PuffsTime': config.PuffsTime,
             'Model.Counters.DateTime.Year': config.Year,
@@ -1310,6 +1314,10 @@ class AfcFile {
             'Model.Interface.ShowScreensaverInStealth': (config, val) => config.ShowScreensaverInStealth = bool(val),
             'Model.Interface.ClockOnClickInStealth': (config, val) => config.ClockOnClickInStealth = bool(val),
             'Model.Interface.FiveClicks': (config, val) => config.FiveClicks = re(enumFiveClicks, val),
+
+            'Model.Interface.TemperatureUnits': (config, val) => config.TemperatureUnits = Number(val),
+            'Model.Interface.DateFormat': (config, val) => config.DateFormat = Number(val),
+            'Model.Interface.TimeFormat': (config, val) => config.TimeFormat = Number(val),
 
             'Model.Counters.PuffsCount': (config, val) => config.PuffsCount = Number(val),
             'Model.Counters.PuffsTime': (config, val) => config.PuffsTime = Number(val),
