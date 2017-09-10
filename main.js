@@ -414,6 +414,20 @@ ipc.on('download', () => {
 });
 
 app.on('ready', () => {
+    try {
+        let locale = app.getLocale().substr(0, 2);
+        const available = ['cn', 'cz', 'de', 'en', 'es', 'fr', 'hu', 'it', 'ja', 'nl', 'pl', 'ru', 'sk', 'sr', 'tr', 'ua'];
+        if (available.indexOf[locale] === -1) {
+            locale = 'en;'
+        }
+        const fp = path.join(__dirname, 'i18n', locale + '.json');
+        lang = JSON.parse(fs.readFileSync(fp).toString());
+        console.log('LANG', locale);
+    } catch (err) {
+        console.log(err);
+        return;
+    }
+
     createWindow();
     setTimeout(function () {
         ipcSend('foxfirmware', fox.minimumSupportedBuildNumber);
@@ -450,20 +464,6 @@ function ipcSend(key, data) {
         //if (port) port.close();
         app.quit();
     }
-}
-
-try {
-    let locale = app.getLocale().substr(0, 2);
-    const available = ['cn', 'cz', 'de', 'en', 'es', 'fr', 'hu', 'it', 'ja', 'nl', 'pl', 'ru', 'sk', 'sr', 'tr', 'ua'];
-    if (available.indexOf[locale] === -1) {
-        locale = 'en;'
-    }
-    const fp = path.join(__dirname, 'i18n', locale + '.json');
-    lang = JSON.parse(fs.readFileSync(fp).toString());
-    console.log('LANG', locale);
-} catch (err) {
-    console.log(err);
-    return;
 }
 
 function _(key) {
