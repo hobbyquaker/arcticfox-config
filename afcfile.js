@@ -45,6 +45,8 @@ const enumLineContent = {
     66: 'BatteryWithVolts',
 };
 
+
+
 const enumFoxyLineContent = {
     48: 'Amps',
     49: 'Puffs',
@@ -157,7 +159,7 @@ const enumSmartMode = {
     0: 'Off',
     1: 'On',
     2: 'Lazy'
-}
+};
 
 const enumScreenProtectionTime = {
     0: 'Off',
@@ -168,7 +170,22 @@ const enumScreenProtectionTime = {
     15: 'Min15',
     20: 'Min20',
     30: 'Min30'
-}
+};
+
+const enumTemperatureUnits = {
+    0: 'Fahrenheit',
+    1: 'Celsius'
+};
+
+const enumDateFormat = {
+    0: 'DDMMYY',
+    1: 'MMDDYY'
+};
+
+const enumTimeFormat = {
+    0: 'H24',
+    1: 'H12'
+};
 
 class AfcFile {
 
@@ -208,12 +225,12 @@ class AfcFile {
             'Model.General.Profiles[0].Flags2.IsPIEnabled': config.profiles[0].IsPIEnabled,
             'Model.General.Profiles[0].Flags2.IsPowerStep1W': config.profiles[0].IsPowerStep1W,
             'Model.General.Profiles[0].Flags2.IsTemperatureStep1C2F': config.profiles[0].IsTemperatureStep1C2F,
+            'Model.General.Profiles[0].Power': Math.round(config.profiles[0].Power * 10),
             'Model.General.Profiles[0].PreheatType': enumPreheatType[config.profiles[0].PreheatType],
             'Model.General.Profiles[0].SelectedCurve': config.profiles[0].SelectedCurve,
             'Model.General.Profiles[0].PreheatTime': config.profiles[0].PreheatTime,
             'Model.General.Profiles[0].PreheatDelay': config.profiles[0].PreheatDelay,
             'Model.General.Profiles[0].PreheatPower': config.profiles[0].PreheatPower,
-            'Model.General.Profiles[0].Power': Math.round(config.profiles[0].Power * 10),
             'Model.General.Profiles[0].Temperature': config.profiles[0].Temperature,
             'Model.General.Profiles[0].Resistance': config.profiles[0].Resistance,
             'Model.General.Profiles[0].TCR': config.profiles[0].TCR,
@@ -229,12 +246,12 @@ class AfcFile {
             'Model.General.Profiles[1].Flags2.IsPIEnabled': config.profiles[1].IsPIEnabled,
             'Model.General.Profiles[1].Flags2.IsPowerStep1W': config.profiles[1].IsPowerStep1W,
             'Model.General.Profiles[1].Flags2.IsTemperatureStep1C2F': config.profiles[1].IsTemperatureStep1C2F,
+            'Model.General.Profiles[1].Power': Math.round(config.profiles[1].Power * 10),
             'Model.General.Profiles[1].PreheatType': enumPreheatType[config.profiles[1].PreheatType],
             'Model.General.Profiles[1].SelectedCurve': config.profiles[1].SelectedCurve,
             'Model.General.Profiles[1].PreheatTime': config.profiles[1].PreheatTime,
             'Model.General.Profiles[1].PreheatDelay': config.profiles[1].PreheatDelay,
             'Model.General.Profiles[1].PreheatPower': config.profiles[1].PreheatPower,
-            'Model.General.Profiles[1].Power': Math.round(config.profiles[1].Power * 10),
             'Model.General.Profiles[1].Temperature': config.profiles[1].Temperature,
             'Model.General.Profiles[1].Resistance': config.profiles[1].Resistance,
             'Model.General.Profiles[1].TCR': config.profiles[1].TCR,
@@ -250,12 +267,12 @@ class AfcFile {
             'Model.General.Profiles[2].Flags2.IsPIEnabled': config.profiles[2].IsPIEnabled,
             'Model.General.Profiles[2].Flags2.IsPowerStep1W': config.profiles[2].IsPowerStep1W,
             'Model.General.Profiles[2].Flags2.IsTemperatureStep1C2F': config.profiles[2].IsTemperatureStep1C2F,
+            'Model.General.Profiles[2].Power': Math.round(config.profiles[2].Power * 10),
             'Model.General.Profiles[2].PreheatType': enumPreheatType[config.profiles[2].PreheatType],
             'Model.General.Profiles[2].SelectedCurve': config.profiles[2].SelectedCurve,
             'Model.General.Profiles[2].PreheatTime': config.profiles[2].PreheatTime,
             'Model.General.Profiles[2].PreheatDelay': config.profiles[2].PreheatDelay,
             'Model.General.Profiles[2].PreheatPower': config.profiles[2].PreheatPower,
-            'Model.General.Profiles[2].Power': Math.round(config.profiles[2].Power * 10),
             'Model.General.Profiles[2].Temperature': config.profiles[2].Temperature,
             'Model.General.Profiles[2].Resistance': config.profiles[2].Resistance,
             'Model.General.Profiles[2].TCR': config.profiles[2].TCR,
@@ -271,12 +288,12 @@ class AfcFile {
             'Model.General.Profiles[3].Flags2.IsPIEnabled': config.profiles[3].IsPIEnabled,
             'Model.General.Profiles[3].Flags2.IsPowerStep1W': config.profiles[3].IsPowerStep1W,
             'Model.General.Profiles[3].Flags2.IsTemperatureStep1C2F': config.profiles[3].IsTemperatureStep1C2F,
+            'Model.General.Profiles[3].Power': Math.round(config.profiles[3].Power * 10),
             'Model.General.Profiles[3].PreheatType': enumPreheatType[config.profiles[3].PreheatType],
             'Model.General.Profiles[3].SelectedCurve': config.profiles[3].SelectedCurve,
             'Model.General.Profiles[3].PreheatTime': config.profiles[3].PreheatTime,
             'Model.General.Profiles[3].PreheatDelay': config.profiles[3].PreheatDelay,
             'Model.General.Profiles[3].PreheatPower': config.profiles[3].PreheatPower,
-            'Model.General.Profiles[3].Power': Math.round(config.profiles[3].Power * 10),
             'Model.General.Profiles[3].Temperature': config.profiles[3].Temperature,
             'Model.General.Profiles[3].Resistance': config.profiles[3].Resistance,
             'Model.General.Profiles[3].TCR': config.profiles[3].TCR,
@@ -292,12 +309,12 @@ class AfcFile {
             'Model.General.Profiles[4].Flags2.IsPIEnabled': config.profiles[4].IsPIEnabled,
             'Model.General.Profiles[4].Flags2.IsPowerStep1W': config.profiles[4].IsPowerStep1W,
             'Model.General.Profiles[4].Flags2.IsTemperatureStep1C2F': config.profiles[4].IsTemperatureStep1C2F,
+            'Model.General.Profiles[4].Power': Math.round(config.profiles[4].Power * 10),
             'Model.General.Profiles[4].PreheatType': enumPreheatType[config.profiles[4].PreheatType],
             'Model.General.Profiles[4].SelectedCurve': config.profiles[4].SelectedCurve,
             'Model.General.Profiles[4].PreheatTime': config.profiles[4].PreheatTime,
             'Model.General.Profiles[4].PreheatDelay': config.profiles[4].PreheatDelay,
             'Model.General.Profiles[4].PreheatPower': config.profiles[4].PreheatPower,
-            'Model.General.Profiles[4].Power': Math.round(config.profiles[4].Power * 10),
             'Model.General.Profiles[4].Temperature': config.profiles[4].Temperature,
             'Model.General.Profiles[4].Resistance': config.profiles[4].Resistance,
             'Model.General.Profiles[4].TCR': config.profiles[4].TCR,
@@ -313,12 +330,12 @@ class AfcFile {
             'Model.General.Profiles[5].Flags2.IsPIEnabled': config.profiles[5].IsPIEnabled,
             'Model.General.Profiles[5].Flags2.IsPowerStep1W': config.profiles[5].IsPowerStep1W,
             'Model.General.Profiles[5].Flags2.IsTemperatureStep1C2F': config.profiles[5].IsTemperatureStep1C2F,
+            'Model.General.Profiles[5].Power': Math.round(config.profiles[5].Power * 10),
             'Model.General.Profiles[5].PreheatType': enumPreheatType[config.profiles[5].PreheatType],
             'Model.General.Profiles[5].SelectedCurve': config.profiles[5].SelectedCurve,
             'Model.General.Profiles[5].PreheatTime': config.profiles[5].PreheatTime,
             'Model.General.Profiles[5].PreheatDelay': config.profiles[5].PreheatDelay,
             'Model.General.Profiles[5].PreheatPower': config.profiles[5].PreheatPower,
-            'Model.General.Profiles[5].Power': Math.round(config.profiles[5].Power * 10),
             'Model.General.Profiles[5].Temperature': config.profiles[5].Temperature,
             'Model.General.Profiles[5].Resistance': config.profiles[5].Resistance,
             'Model.General.Profiles[5].TCR': config.profiles[5].TCR,
@@ -334,12 +351,12 @@ class AfcFile {
             'Model.General.Profiles[6].Flags2.IsPIEnabled': config.profiles[6].IsPIEnabled,
             'Model.General.Profiles[6].Flags2.IsPowerStep1W': config.profiles[6].IsPowerStep1W,
             'Model.General.Profiles[6].Flags2.IsTemperatureStep1C2F': config.profiles[6].IsTemperatureStep1C2F,
+            'Model.General.Profiles[6].Power': Math.round(config.profiles[6].Power * 10),
             'Model.General.Profiles[6].PreheatType': enumPreheatType[config.profiles[6].PreheatType],
             'Model.General.Profiles[6].SelectedCurve': config.profiles[6].SelectedCurve,
             'Model.General.Profiles[6].PreheatTime': config.profiles[6].PreheatTime,
             'Model.General.Profiles[6].PreheatDelay': config.profiles[6].PreheatDelay,
             'Model.General.Profiles[6].PreheatPower': config.profiles[6].PreheatPower,
-            'Model.General.Profiles[6].Power': Math.round(config.profiles[6].Power * 10),
             'Model.General.Profiles[6].Temperature': config.profiles[6].Temperature,
             'Model.General.Profiles[6].Resistance': config.profiles[6].Resistance,
             'Model.General.Profiles[6].TCR': config.profiles[6].TCR,
@@ -355,12 +372,12 @@ class AfcFile {
             'Model.General.Profiles[7].Flags2.IsPIEnabled': config.profiles[7].IsPIEnabled,
             'Model.General.Profiles[7].Flags2.IsPowerStep1W': config.profiles[7].IsPowerStep1W,
             'Model.General.Profiles[7].Flags2.IsTemperatureStep1C2F': config.profiles[7].IsTemperatureStep1C2F,
+            'Model.General.Profiles[7].Power': Math.round(config.profiles[7].Power * 10),
             'Model.General.Profiles[7].PreheatType': enumPreheatType[config.profiles[7].PreheatType],
             'Model.General.Profiles[7].SelectedCurve': config.profiles[7].SelectedCurve,
             'Model.General.Profiles[7].PreheatTime': config.profiles[7].PreheatTime,
             'Model.General.Profiles[7].PreheatDelay': config.profiles[7].PreheatDelay,
             'Model.General.Profiles[7].PreheatPower': config.profiles[7].PreheatPower,
-            'Model.General.Profiles[7].Power': Math.round(config.profiles[7].Power * 10),
             'Model.General.Profiles[7].Temperature': config.profiles[7].Temperature,
             'Model.General.Profiles[7].Resistance': config.profiles[7].Resistance,
             'Model.General.Profiles[7].TCR': config.profiles[7].TCR,
@@ -372,6 +389,19 @@ class AfcFile {
             'Model.General.SmartMode': enumSmartMode[config.SmartMode],
             'Model.General.SmartRange': config.SmartRange,
 
+            'Model.Interface.Brightness': Math.round(config.Brightness * 2.55),
+            'Model.Interface.IsFlipped': config.IsFlipped,
+            'Model.Interface.IsLogoEnabled': config.IsLogoEnabled,
+            'Model.Interface.IsClockOnMainScreen': config.IsClockOnMainScreen,
+            'Model.Interface.ClockType': enumClockType[config.ClockType],
+            'Model.Interface.DimTimeout': config.DimTimeout,
+            'Model.Interface.DimTimeoutLocked': config.DimTimeoutLocked,
+            'Model.Interface.DimTimeoutCharging': config.DimTimeoutCharging,
+            'Model.Interface.ShowLogoDelay': config.ShowLogoDelay,
+            'Model.Interface.ShowClockDelay': config.ShowClockDelay,
+            'Model.Interface.ScreensaveDuration': config.ScreensaveDuration,
+            'Model.Interface.PuffScreenDelay': Math.round(config.PuffScreenDelay * 10),
+
             'Model.Interface.ClicksVW[0]': enumClickAction[config.ClicksVW0],
             'Model.Interface.ClicksVW[1]': enumClickAction[config.ClicksVW1],
             'Model.Interface.ClicksVW[2]': enumClickAction[config.ClicksVW2],
@@ -379,6 +409,8 @@ class AfcFile {
             'Model.Interface.ClicksTC[0]': enumClickAction[config.ClicksTC0],
             'Model.Interface.ClicksTC[1]': enumClickAction[config.ClicksTC1],
             'Model.Interface.ClicksTC[2]': enumClickAction[config.ClicksTC2],
+
+            'Model.Interface.FiveClicks': enumFiveClicks[config.FiveClicks],
 
             'Model.Interface.ShortcutsVW[0].InStandby': enumClickAction[config.ShortcutsVW0InStandby],
             'Model.Interface.ShortcutsVW[0].InEditMain': enumShortcutsInEdit[config.ShortcutsVW0InEditMain],
@@ -409,6 +441,10 @@ class AfcFile {
             'Model.Interface.ShortcutsTC[2].InEditMain': enumShortcutsInEdit[config.ShortcutsTC2InEditMain],
             'Model.Interface.ShortcutsTC[2].InSelector': enumShortcutsInSelector[config.ShortcutsTC2InSelector],
             'Model.Interface.ShortcutsTC[2].InMenu': enumShortcutsInMenu[config.ShortcutsTC2InMenu],
+
+            'Model.Interface.WakeUpByPlusMinus': config.WakeUpByPlusMinus,
+            'Model.Interface.IsUpDownSwapped': config.IsUpDownSwapped,
+            'Model.Interface.MainScreenSkin': enumSkin[config.MainScreenSkin],
 
             'Model.Interface.ClassicSkinVWLines.Line1': () => lineContent('ClassicSkinVWLine1'),
             'Model.Interface.ClassicSkinVWLines.Line2': () => lineContent('ClassicSkinVWLine2'),
@@ -442,33 +478,25 @@ class AfcFile {
             'Model.Interface.SmallSkinTCLines.Line1': () => lineContent('SmallSkinTCLine1'),
             'Model.Interface.SmallSkinTCLines.Line2': () => lineContent('SmallSkinTCLine2'),
 
-            'Model.Interface.Brightness': Math.round(config.Brightness * 2.55),
-            'Model.Interface.DimTimeout': config.DimTimeout,
-            'Model.Interface.DimTimeoutLocked': config.DimTimeoutLocked,
-            'Model.Interface.DimTimeoutCharging': config.DimTimeoutCharging,
-            'Model.Interface.ShowLogoDelay': config.ShowLogoDelay,
-            'Model.Interface.ShowClockDelay': config.ShowClockDelay,
-            'Model.Interface.IsFlipped': config.IsFlipped,
-            'Model.Interface.IsStealthMode': config.IsStealthMode,
-            'Model.Interface.WakeUpByPlusMinus': config.WakeUpByPlusMinus,
+            'Model.Interface.MediumSkinVWLines.Line1': () => lineContent('MediumSkinVWLine1'),
+            'Model.Interface.MediumSkinVWLines.Line2': () => lineContent('MediumSkinVWLine2'),
+            'Model.Interface.MediumSkinVWLines.Line3': () => lineContent('MediumSkinVWLine3'),
+
+            'Model.Interface.MediumSkinTCLines.Line1': () => lineContent('MediumSkinTCLine1'),
+            'Model.Interface.MediumSkinTCLines.Line2': () => lineContent('MediumSkinTCLine2'),
+            'Model.Interface.MediumSkinTCLines.Line3': () => lineContent('MediumSkinTCLine3'),
+
+            'Model.Interface.TemperatureUnits': enumTemperatureUnits[config.TemperatureUnits],
+            'Model.Interface.DateFormat': enumDateFormat[config.DateFormat],
+            'Model.Interface.TimeFormat': enumTimeFormat[config.TimeFormat],
+
+            'Model.Interface.PuffsTimeFormat': enumPuffsTimeFormat[config.PuffsTimeFormat],
             'Model.Interface.ChargeScreenType': enumChargeScreenType[config.ChargeScreenType],
             'Model.Interface.ChargeExtraType': enumChargeExtraType[config.ChargeExtraType],
-            'Model.Interface.IsLogoEnabled': config.IsLogoEnabled,
-            'Model.Interface.ClockType': enumClockType[config.ClockType],
-            'Model.Interface.IsClockOnMainScreen': config.IsClockOnMainScreen,
-            'Model.Interface.ScreensaveDuration': config.ScreensaveDuration,
-            'Model.Interface.PuffScreenDelay': Math.round(config.PuffScreenDelay * 10),
-            'Model.Interface.PuffsTimeFormat': enumPuffsTimeFormat[config.PuffsTimeFormat],
-            'Model.Interface.MainScreenSkin': enumSkin[config.MainScreenSkin],
-            'Model.Interface.IsUpDownSwapped': config.IsUpDownSwapped,
+            'Model.Interface.IsStealthMode': config.IsStealthMode,
             'Model.Interface.ShowChargingInStealth': config.ShowChargingInStealth,
             'Model.Interface.ShowScreensaverInStealth': config.ShowScreensaverInStealth,
             'Model.Interface.ClockOnClickInStealth': config.ClockOnClickInStealth,
-            'Model.Interface.FiveClicks': enumFiveClicks[config.FiveClicks],
-
-            'Model.Interface.TemperatureUnits': config.TemperatureUnits,
-            'Model.Interface.DateFormat': config.DateFormat,
-            'Model.Interface.TimeFormat': config.TimeFormat,
 
             'Model.Counters.PuffsCount': config.PuffsCount,
             'Model.Counters.PuffsTime': config.PuffsTime,
@@ -479,10 +507,25 @@ class AfcFile {
             'Model.Counters.DateTime.Minute': config.Minute,
             'Model.Counters.DateTime.Second': config.Second,
 
+            'Model.Advanced.PowerLimit': Math.round(config.PowerLimit * 10),
+            'Model.Advanced.PuffCutOff': Math.round(config.PuffCutOff * 10),
+
+            'Model.Advanced.BatteryVoltageOffsets[0]': config.BatteryVoltageOffset1,
+            'Model.Advanced.BatteryVoltageOffsets[1]': config.BatteryVoltageOffset2,
+            'Model.Advanced.BatteryVoltageOffsets[2]': config.BatteryVoltageOffset3,
+            'Model.Advanced.BatteryVoltageOffsets[3]': config.BatteryVoltageOffset4,
+
+            'Model.Advanced.RtcMode': enumRtcMode[config.RtcMode],
+            'Model.Advanced.IsUsbCharge': config.IsUsbCharge,
+            'Model.Advanced.UsbNoSleep': config.UsbNoSleep,
+            'Model.Advanced.ChargingCurrent': config.ChargingCurrent,
+            'Model.Advanced.ResetCountersOnStartup': config.ResetCountersOnStartup,
+
             'Model.Advanced.ShuntCorrection': config.ShuntCorrection,
+            'Model.Advanced.InternalResistance': config.InternalResistance,
+
             'Model.Advanced.BatteryModel': enumBatteryModel[config.BatteryModel],
 
-            'Model.Advanced.ChargingCurrent': config.ChargingCurrent,
 
             'Model.Advanced.CustomBatteryProfiles[0].Name': config.CustomBatteryProfiles[0].Name,
             'Model.Advanced.CustomBatteryProfiles[0].Data[0].Percents': config.CustomBatteryProfiles[0].PercentsVoltage[0].Percents,
@@ -559,9 +602,6 @@ class AfcFile {
             'Model.Advanced.CustomBatteryProfiles[2].Data[10].Voltage': Math.round(config.CustomBatteryProfiles[2].PercentsVoltage[10].Voltage * 100),
             'Model.Advanced.CustomBatteryProfiles[2].Cutoff': Math.round(config.CustomBatteryProfiles[2].Cutoff * 100),
 
-            'Model.Advanced.RtcMode': enumRtcMode[config.RtcMode],
-            'Model.Advanced.IsUsbCharge': config.IsUsbCharge,
-            'Model.Advanced.ResetCountersOnStartup': config.ResetCountersOnStartup,
 
             'Model.Advanced.TFRTables[0].Name': config.TFRTables[0].Name,
             'Model.Advanced.TFRTables[0].Points[0].Temperature': config.TFRTables[0].Points[0].Temperature,
@@ -683,8 +723,6 @@ class AfcFile {
             'Model.Advanced.TFRTables[7].Points[5].Factor': Math.round(config.TFRTables[7].Points[5].Factor * 10000),
             'Model.Advanced.TFRTables[7].Points[6].Temperature': config.TFRTables[7].Points[6].Temperature,
             'Model.Advanced.TFRTables[7].Points[6].Factor': Math.round(config.TFRTables[7].Points[6].Factor * 10000),
-
-            'Model.Advanced.PuffCutOff': Math.round(config.PuffCutOff * 10),
 
             'Model.Advanced.PowerCurves[0].Name': config.PowerCurves[0].Name,
             'Model.Advanced.PowerCurves[0].Points[0].Time': Math.round(config.PowerCurves[0].Points[0].Time * 10),
@@ -894,16 +932,9 @@ class AfcFile {
             'Model.Advanced.PowerCurves[7].Points[11].Time': Math.round(config.PowerCurves[7].Points[11].Time * 10),
             'Model.Advanced.PowerCurves[7].Points[11].Percent': config.PowerCurves[7].Points[11].Percent,
 
-            'Model.Advanced.BatteryVoltageOffsets[0]': config.BatteryVoltageOffset1,
-            'Model.Advanced.BatteryVoltageOffsets[1]': config.BatteryVoltageOffset2,
-            'Model.Advanced.BatteryVoltageOffsets[2]': config.BatteryVoltageOffset3,
-            'Model.Advanced.BatteryVoltageOffsets[3]': config.BatteryVoltageOffset4,
-
-            'Model.Advanced.UsbNoSleep': config.UsbNoSleep,
             'Model.Advanced.DeepSleepMode': enumDeepSleepMode[config.DeepSleepMode],
             'Model.Advanced.DeepSleepDelay': config.DeepSleepDelay,
-            'Model.Advanced.PowerLimit': Math.round(config.PowerLimit * 10),
-            'Model.Advanced.InternalResistance': config.InternalResistance,
+
         };
         const obj = {
             SerializableConfiguration: {
@@ -925,12 +956,10 @@ class AfcFile {
 
             }
 
-            console.log('...', Key, Value)
-
-
             if (typeof Value === 'undefined') {
-                console.log('!!!', Key)
+                console.log('!!!', Key);
             }
+
             obj.SerializableConfiguration.Data.Item.push({
                 $: {Key, Value}
             });
@@ -965,7 +994,8 @@ class AfcFile {
         function reStartsWith(en, val) {
             let res = val;
             Object.keys(en).forEach(i => {
-                if (val.startsWith(en[i])) {
+                const [first, last] = val.split(', ');
+                if (first === en[i]) {
                     res = i;
                 }
             });
@@ -992,12 +1022,12 @@ class AfcFile {
             'Model.General.Profiles[0].Flags2.IsPIEnabled': (config, val) => config.profiles[0].IsPIEnabled = bool(val),
             'Model.General.Profiles[0].Flags2.IsPowerStep1W': (config, val) => config.profiles[0].IsPowerStep1W = bool(val),
             'Model.General.Profiles[0].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[0].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[0].Power': (config, val) => config.profiles[0].Power = val / 10,
             'Model.General.Profiles[0].PreheatType': (config, val) => config.profiles[0].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[0].SelectedCurve': (config, val) => config.profiles[0].SelectedCurve = Number(val),
             'Model.General.Profiles[0].PreheatTime': (config, val) => config.profiles[0].PreheatTime = Number(val),
             'Model.General.Profiles[0].PreheatDelay': (config, val) => config.profiles[0].PreheatDelay = Number(val),
             'Model.General.Profiles[0].PreheatPower': (config, val) => config.profiles[0].PreheatPower = Number(val),
-            'Model.General.Profiles[0].Power': (config, val) => config.profiles[0].Power = val / 10,
             'Model.General.Profiles[0].Temperature': (config, val) => config.profiles[0].Temperature = Number(val),
             'Model.General.Profiles[0].Resistance': (config, val) => config.profiles[0].Resistance = Number(val),
             'Model.General.Profiles[0].TCR': (config, val) => config.profiles[0].TCR = Number(val),
@@ -1013,12 +1043,12 @@ class AfcFile {
             'Model.General.Profiles[1].Flags2.IsPIEnabled': (config, val) => config.profiles[1].IsPIEnabled = bool(val),
             'Model.General.Profiles[1].Flags2.IsPowerStep1W': (config, val) => config.profiles[1].IsPowerStep1W = bool(val),
             'Model.General.Profiles[1].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[1].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[1].Power': (config, val) => config.profiles[1].Power = val / 10,
             'Model.General.Profiles[1].PreheatType': (config, val) => config.profiles[1].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[1].SelectedCurve': (config, val) => config.profiles[1].SelectedCurve = Number(val),
             'Model.General.Profiles[1].PreheatTime': (config, val) => config.profiles[1].PreheatTime = Number(val),
             'Model.General.Profiles[1].PreheatDelay': (config, val) => config.profiles[1].PreheatDelay = Number(val),
             'Model.General.Profiles[1].PreheatPower': (config, val) => config.profiles[1].PreheatPower = Number(val),
-            'Model.General.Profiles[1].Power': (config, val) => config.profiles[1].Power = val / 10,
             'Model.General.Profiles[1].Temperature': (config, val) => config.profiles[1].Temperature = Number(val),
             'Model.General.Profiles[1].Resistance': (config, val) => config.profiles[1].Resistance = Number(val),
             'Model.General.Profiles[1].TCR': (config, val) => config.profiles[1].TCR = Number(val),
@@ -1035,12 +1065,12 @@ class AfcFile {
             'Model.General.Profiles[2].Flags2.IsPIEnabled': (config, val) => config.profiles[2].IsPIEnabled = bool(val),
             'Model.General.Profiles[2].Flags2.IsPowerStep1W': (config, val) => config.profiles[2].IsPowerStep1W = bool(val),
             'Model.General.Profiles[2].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[2].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[2].Power': (config, val) => config.profiles[2].Power = val / 10,
             'Model.General.Profiles[2].PreheatType': (config, val) => config.profiles[2].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[2].SelectedCurve': (config, val) => config.profiles[2].SelectedCurve = Number(val),
             'Model.General.Profiles[2].PreheatTime': (config, val) => config.profiles[2].PreheatTime = Number(val),
             'Model.General.Profiles[2].PreheatDelay': (config, val) => config.profiles[2].PreheatDelay = Number(val),
             'Model.General.Profiles[2].PreheatPower': (config, val) => config.profiles[2].PreheatPower = Number(val),
-            'Model.General.Profiles[2].Power': (config, val) => config.profiles[2].Power = val / 10,
             'Model.General.Profiles[2].Temperature': (config, val) => config.profiles[2].Temperature = Number(val),
             'Model.General.Profiles[2].Resistance': (config, val) => config.profiles[2].Resistance = Number(val),
             'Model.General.Profiles[2].TCR': (config, val) => config.profiles[2].TCR = Number(val),
@@ -1056,12 +1086,12 @@ class AfcFile {
             'Model.General.Profiles[3].Flags2.IsPIEnabled': (config, val) => config.profiles[3].IsPIEnabled = bool(val),
             'Model.General.Profiles[3].Flags2.IsPowerStep1W': (config, val) => config.profiles[3].IsPowerStep1W = bool(val),
             'Model.General.Profiles[3].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[3].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[3].Power': (config, val) => config.profiles[3].Power = val / 10,
             'Model.General.Profiles[3].PreheatType': (config, val) => config.profiles[3].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[3].SelectedCurve': (config, val) => config.profiles[3].SelectedCurve = Number(val),
             'Model.General.Profiles[3].PreheatTime': (config, val) => config.profiles[3].PreheatTime = Number(val),
             'Model.General.Profiles[3].PreheatDelay': (config, val) => config.profiles[3].PreheatDelay = Number(val),
             'Model.General.Profiles[3].PreheatPower': (config, val) => config.profiles[3].PreheatPower = Number(val),
-            'Model.General.Profiles[3].Power': (config, val) => config.profiles[3].Power = val / 10,
             'Model.General.Profiles[3].Temperature': (config, val) => config.profiles[3].Temperature = Number(val),
             'Model.General.Profiles[3].Resistance': (config, val) => config.profiles[3].Resistance = Number(val),
             'Model.General.Profiles[3].TCR': (config, val) => config.profiles[3].TCR = Number(val),
@@ -1078,12 +1108,12 @@ class AfcFile {
             'Model.General.Profiles[4].Flags2.IsPIEnabled': (config, val) => config.profiles[4].IsPIEnabled = bool(val),
             'Model.General.Profiles[4].Flags2.IsPowerStep1W': (config, val) => config.profiles[4].IsPowerStep1W = bool(val),
             'Model.General.Profiles[4].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[4].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[4].Power': (config, val) => config.profiles[4].Power = val / 10,
             'Model.General.Profiles[4].PreheatType': (config, val) => config.profiles[4].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[4].SelectedCurve': (config, val) => config.profiles[4].SelectedCurve = Number(val),
             'Model.General.Profiles[4].PreheatTime': (config, val) => config.profiles[4].PreheatTime = Number(val),
             'Model.General.Profiles[4].PreheatDelay': (config, val) => config.profiles[4].PreheatDelay = Number(val),
             'Model.General.Profiles[4].PreheatPower': (config, val) => config.profiles[4].PreheatPower = Number(val),
-            'Model.General.Profiles[4].Power': (config, val) => config.profiles[4].Power = val / 10,
             'Model.General.Profiles[4].Temperature': (config, val) => config.profiles[4].Temperature = Number(val),
             'Model.General.Profiles[4].Resistance': (config, val) => config.profiles[4].Resistance = Number(val),
             'Model.General.Profiles[4].TCR': (config, val) => config.profiles[4].TCR = Number(val),
@@ -1100,12 +1130,12 @@ class AfcFile {
             'Model.General.Profiles[5].Flags2.IsPIEnabled': (config, val) => config.profiles[5].IsPIEnabled = bool(val),
             'Model.General.Profiles[5].Flags2.IsPowerStep1W': (config, val) => config.profiles[5].IsPowerStep1W = bool(val),
             'Model.General.Profiles[5].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[5].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[5].Power': (config, val) => config.profiles[5].Power = val / 10,
             'Model.General.Profiles[5].PreheatType': (config, val) => config.profiles[5].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[5].SelectedCurve': (config, val) => config.profiles[5].SelectedCurve = Number(val),
             'Model.General.Profiles[5].PreheatTime': (config, val) => config.profiles[5].PreheatTime = Number(val),
             'Model.General.Profiles[5].PreheatDelay': (config, val) => config.profiles[5].PreheatDelay = Number(val),
             'Model.General.Profiles[5].PreheatPower': (config, val) => config.profiles[5].PreheatPower = Number(val),
-            'Model.General.Profiles[5].Power': (config, val) => config.profiles[5].Power = val / 10,
             'Model.General.Profiles[5].Temperature': (config, val) => config.profiles[5].Temperature = Number(val),
             'Model.General.Profiles[5].Resistance': (config, val) => config.profiles[5].Resistance = Number(val),
             'Model.General.Profiles[5].TCR': (config, val) => config.profiles[5].TCR = Number(val),
@@ -1121,12 +1151,12 @@ class AfcFile {
             'Model.General.Profiles[6].Flags2.IsPIEnabled': (config, val) => config.profiles[6].IsPIEnabled = bool(val),
             'Model.General.Profiles[6].Flags2.IsPowerStep1W': (config, val) => config.profiles[6].IsPowerStep1W = bool(val),
             'Model.General.Profiles[6].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[6].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[6].Power': (config, val) => config.profiles[6].Power = val / 10,
             'Model.General.Profiles[6].PreheatType': (config, val) => config.profiles[6].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[6].SelectedCurve': (config, val) => config.profiles[6].SelectedCurve = Number(val),
             'Model.General.Profiles[6].PreheatTime': (config, val) => config.profiles[6].PreheatTime = Number(val),
             'Model.General.Profiles[6].PreheatDelay': (config, val) => config.profiles[6].PreheatDelay = Number(val),
             'Model.General.Profiles[6].PreheatPower': (config, val) => config.profiles[6].PreheatPower = Number(val),
-            'Model.General.Profiles[6].Power': (config, val) => config.profiles[6].Power = val / 10,
             'Model.General.Profiles[6].Temperature': (config, val) => config.profiles[6].Temperature = Number(val),
             'Model.General.Profiles[6].Resistance': (config, val) => config.profiles[6].Resistance = Number(val),
             'Model.General.Profiles[6].TCR': (config, val) => config.profiles[6].TCR = Number(val),
@@ -1142,12 +1172,12 @@ class AfcFile {
             'Model.General.Profiles[7].Flags2.IsPIEnabled': (config, val) => config.profiles[7].IsPIEnabled = bool(val),
             'Model.General.Profiles[7].Flags2.IsPowerStep1W': (config, val) => config.profiles[7].IsPowerStep1W = bool(val),
             'Model.General.Profiles[7].Flags2.IsTemperatureStep1C2F': (config, val) => config.profiles[7].IsTemperatureStep1C2F = bool(val),
+            'Model.General.Profiles[7].Power': (config, val) => config.profiles[7].Power = val / 10,
             'Model.General.Profiles[7].PreheatType': (config, val) => config.profiles[7].PreheatType = re(enumPreheatType, val),
             'Model.General.Profiles[7].SelectedCurve': (config, val) => config.profiles[7].SelectedCurve = Number(val),
             'Model.General.Profiles[7].PreheatTime': (config, val) => config.profiles[7].PreheatTime = Number(val),
             'Model.General.Profiles[7].PreheatDelay': (config, val) => config.profiles[7].PreheatDelay = Number(val),
             'Model.General.Profiles[7].PreheatPower': (config, val) => config.profiles[7].PreheatPower = Number(val),
-            'Model.General.Profiles[7].Power': (config, val) => config.profiles[7].Power = val / 10,
             'Model.General.Profiles[7].Temperature': (config, val) => config.profiles[7].Temperature = Number(val),
             'Model.General.Profiles[7].Resistance': (config, val) => config.profiles[7].Resistance = Number(val),
             'Model.General.Profiles[7].TCR': (config, val) => config.profiles[7].TCR = Number(val),
@@ -1297,6 +1327,33 @@ class AfcFile {
                 config.SmallSkinTCLine2Puff = val.endsWith('FireTimeMask');
             },
 
+            'Model.Interface.MediumSkinVWLines.Line1': (config, val) => {
+                config.MediumSkinVWLine1 = reStartsWith(enumLineContent, val);
+                config.MediumSkinVWLine1Puff = val.endsWith('FireTimeMask');
+            },
+            'Model.Interface.MediumSkinVWLines.Line2': (config, val) => {
+                config.MediumSkinVWLine2 = reStartsWith(enumLineContent, val);
+                config.MediumSkinVWLine2Puff = val.endsWith('FireTimeMask');
+            },
+            'Model.Interface.MediumSkinVWLines.Line3': (config, val) => {
+                config.MediumSkinVWLine3 = reStartsWith(enumLineContent, val);
+                config.MediumSkinVWLine3Puff = val.endsWith('FireTimeMask');
+            },
+
+            'Model.Interface.MediumSkinTCLines.Line1': (config, val) => {
+                config.MediumSkinTCLine1 = reStartsWith(enumLineContent, val);
+                config.MediumSkinTCLine1Puff = val.endsWith('FireTimeMask');
+            },
+            'Model.Interface.MediumSkinTCLines.Line2': (config, val) => {
+                config.MediumSkinTCLine2 = reStartsWith(enumLineContent, val);
+                config.MediumSkinTCLine2Puff = val.endsWith('FireTimeMask');
+            },
+            'Model.Interface.MediumSkinTCLines.Line3': (config, val) => {
+                config.MediumSkinTCLine3 = reStartsWith(enumLineContent, val);
+                config.MediumSkinTCLine3Puff = val.endsWith('FireTimeMask');
+            },
+
+
             'Model.Interface.Brightness': (config, val) => config.Brightness = Math.round(val / 2.55),
             'Model.Interface.DimTimeout': (config, val) => config.DimTimeout = Number(val),
             'Model.Interface.DimTimeoutLocked': (config, val) => config.DimTimeoutLocked = Number(val),
@@ -1321,9 +1378,9 @@ class AfcFile {
             'Model.Interface.ClockOnClickInStealth': (config, val) => config.ClockOnClickInStealth = bool(val),
             'Model.Interface.FiveClicks': (config, val) => config.FiveClicks = re(enumFiveClicks, val),
 
-            'Model.Interface.TemperatureUnits': (config, val) => config.TemperatureUnits = Number(val),
-            'Model.Interface.DateFormat': (config, val) => config.DateFormat = Number(val),
-            'Model.Interface.TimeFormat': (config, val) => config.TimeFormat = Number(val),
+            'Model.Interface.TemperatureUnits': (config, val) => config.TemperatureUnits = re(enumTemperatureUnits, val),
+            'Model.Interface.DateFormat': (config, val) => config.DateFormat = re(enumDateFormat, val),
+            'Model.Interface.TimeFormat': (config, val) => config.TimeFormat = re(enumTimeFormat, val),
 
             'Model.Counters.PuffsCount': (config, val) => config.PuffsCount = Number(val),
             'Model.Counters.PuffsTime': (config, val) => config.PuffsTime = Number(val),
@@ -1798,7 +1855,6 @@ class AfcFile {
 
             data.SerializableConfiguration.Data[0].Item.forEach(item => {
                 if (map[item.$.Key]) {
-                    console.log(item.$.Key, item.$.Value);
                     map[item.$.Key](config, item.$.Value);
                 }
             });
