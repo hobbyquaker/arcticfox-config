@@ -449,7 +449,7 @@ function ipcSend(key, data) {
 }
 
 try {
-    const locale = app.getLocale().substr(0, 2);
+    const locale = app.getLocale().substr(0, 2) || 'en';
     const fp = path.join(__dirname, 'i18n', locale + '.json');
     lang = JSON.parse(fs.readFileSync(fp).toString());
     console.log('LANG',locale);
