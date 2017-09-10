@@ -163,7 +163,9 @@ ipc.on('saveconfig', (event, data) => {
     electron.dialog.showSaveDialog(batWin, {
         title: 'Save Configuration'
     }, filename => {
-        fs.writeFileSync(filename, afc.encodeAfc(afc.conf2xml(data)));
+        if (filename) {
+            fs.writeFileSync(filename, afc.encodeAfc(afc.conf2xml(data)));
+        }
     });
 });
 
@@ -203,11 +205,13 @@ ipc.on('tfrexport', (event, data) => {
             extensions: ['csv']
         }
     }, filename => {
-        let out = '"Temperature (degF)","Electrical Resistivity"';
-        data.table.Points.forEach(p => {
-            out += ('\n' + p.Temperature + ',' + p.Factor);
-        });
-        fs.writeFileSync(filename, out);
+        if (filename) {
+            let out = '"Temperature (degF)","Electrical Resistivity"';
+            data.table.Points.forEach(p => {
+                out += ('\n' + p.Temperature + ',' + p.Factor);
+            });
+            fs.writeFileSync(filename, out);
+        }
     });
 });
 
@@ -221,8 +225,6 @@ ipc.on('batexport', (event, data) => {
 
                 ]
             }
-
-
         }
     };
     data.table.PercentsVoltage.forEach(p => {
@@ -242,7 +244,9 @@ ipc.on('batexport', (event, data) => {
         title: 'Export Battery Profile ' + name,
         defaultPath: name + '.xml'
     }, filename => {
-        fs.writeFileSync(filename, xml);
+        if (filename) {
+            fs.writeFileSync(filename, xml);
+        }
     });
 });
 
