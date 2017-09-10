@@ -896,7 +896,6 @@ class AfcFile {
             'Model.Advanced.BatteryVoltageOffsets[2]': config.BatteryVoltageOffset3,
             'Model.Advanced.BatteryVoltageOffsets[3]': config.BatteryVoltageOffset4,
 
-            'Model.Advanced.CheckTCR': config.CheckTCR,
             'Model.Advanced.UsbNoSleep': config.UsbNoSleep,
             'Model.Advanced.DeepSleepMode': enumDeepSleepMode[config.DeepSleepMode],
             'Model.Advanced.DeepSleepDelay': config.DeepSleepDelay,
@@ -1744,7 +1743,6 @@ class AfcFile {
             'Model.Advanced.BatteryVoltageOffsets[2]': (config, val) => config.BatteryVoltageOffset3 = Number(val),
             'Model.Advanced.BatteryVoltageOffsets[3]': (config, val) => config.BatteryVoltageOffset4 = Number(val),
 
-            'Model.Advanced.CheckTCR': (config, val) => config.CheckTCR = bool(val),
             'Model.Advanced.UsbNoSleep': (config, val) => config.UsbNoSleep = bool(val),
             'Model.Advanced.DeepSleepMode': (config, val) => config.DeepSleepMode = re(enumDeepSleepMode, val),
             'Model.Advanced.DeepSleepDelay': (config, val) => config.DeepSleepDelay = Number(val),
