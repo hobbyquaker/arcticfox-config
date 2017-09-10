@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "arcticfox": "^11.0.0",
-    "arcticfox-encryption": "^1.0.0",
+    "arcticfox-encryption": "^1.0.1",
     "async": "^2.1.4",
     "electron-is-dev": "^0.2.0",
     "electron-json-storage": "^3.0.0",
