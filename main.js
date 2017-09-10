@@ -75,12 +75,12 @@ function createWindow () {
 
     let mainWindowState = windowStateKeeper({
         defaultWidth: 536,
-        defaultHeight: 572
+        defaultHeight: 596
     });
 
     let devWindowState = {
         width: 1280,
-        height: 572
+        height: 596
     };
 
     let windowState = isDev ? devWindowState : mainWindowState;
