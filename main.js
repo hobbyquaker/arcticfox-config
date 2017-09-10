@@ -449,10 +449,14 @@ function ipcSend(key, data) {
 }
 
 try {
-    const locale = app.getLocale().substr(0, 2) || 'en';
+    let locale = app.getLocale().substr(0, 2);
+    const available = ['cn', 'cz', 'de', 'en', 'es', 'fr', 'hu', 'it', 'ja', 'nl', 'pl', 'ru', 'sk', 'sr', 'tr', 'ua'];
+    if (available.indexOf[locale] === -1) {
+        locale = 'en;'
+    }
     const fp = path.join(__dirname, 'i18n', locale + '.json');
     lang = JSON.parse(fs.readFileSync(fp).toString());
-    console.log('LANG',locale);
+    console.log('LANG', locale);
 } catch (err) {
     console.log(err);
     return;
