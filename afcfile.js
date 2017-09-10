@@ -195,6 +195,7 @@ class AfcFile {
             'Model.Info.HardwareVersion': config.HardwareVersion,
             'Model.Info.MaxDevicePower': config.MaxDevicePower,
             'Model.Info.NumberOfBatteries': config.NumberOfBatteries,
+            'Model.Info.MaxChargingCurrent': config.MaxChargingCurrent,
             'Model.Info.DisplaySize': enumDisplaySize[config.DisplaySize],
             'Model.Info.FirmwareVersion': config.FirmwareVersion,
             'Model.Info.FirmwareBuild': config.FirmwareBuild,
@@ -321,7 +322,6 @@ class AfcFile {
             'Model.General.Profiles[5].Temperature': config.profiles[5].Temperature,
             'Model.General.Profiles[5].Resistance': config.profiles[5].Resistance,
             'Model.General.Profiles[5].TCR': config.profiles[5].TCR,
-            'Model.General.Profiles[5].PIRegulator.IsEnabled': config.profiles[5].PIRegulatorIsEnabled,
             'Model.General.Profiles[5].PIRegulator.Range': config.profiles[5].PIRegulatorRange,
             'Model.General.Profiles[5].PIRegulator.PValue': config.profiles[5].PIRegulatorPValue,
             'Model.General.Profiles[5].PIRegulator.IValue': config.profiles[5].PIRegulatorIValue,
@@ -925,6 +925,12 @@ class AfcFile {
 
             }
 
+            console.log('...', Key, Value)
+
+
+            if (typeof Value === 'undefined') {
+                console.log('!!!', Key)
+            }
             obj.SerializableConfiguration.Data.Item.push({
                 $: {Key, Value}
             });
@@ -972,7 +978,7 @@ class AfcFile {
             'Model.Info.HardwareVersion': (config, val) => config.HardwareVersion = val,
             'Model.Info.MaxDevicePower': (config, val) => config.MaxDevicePower = Number(val),
             'Model.Info.NumberOfBatteries': (config, val) => config.NumberOfBatteries = Number(val),
-
+            'Model.Info.MaxChargingCurrent': (config, val) => config.MaxChargingCurrent = Number(val),
             'Model.Info.DisplaySize': (config, val) => config.DisplaySize = re(enumDisplaySize, val),
 
             'Model.Info.FirmwareVersion': (config, val) => config.FirmwareVersion = val,
@@ -1792,6 +1798,7 @@ class AfcFile {
 
             data.SerializableConfiguration.Data[0].Item.forEach(item => {
                 if (map[item.$.Key]) {
+                    console.log(item.$.Key, item.$.Value);
                     map[item.$.Key](config, item.$.Value);
                 }
             });
