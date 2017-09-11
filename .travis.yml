@@ -19,6 +19,7 @@ addons:
     packages:
     - libgnome-keyring-dev
     - icnsutils
+    - libusb-1.0.0-dev
 before_install:
 - mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v1.2.1/git-lfs-$([
   "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-1.2.1.tar.gz
@@ -28,6 +29,7 @@ install:
 - nvm install 6
 - npm install electron-builder@next
 - npm install
+- node_modules/.bin/electron-rebuild
 - npm prune
 script:
 - npm run dist
