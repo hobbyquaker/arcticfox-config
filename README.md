@@ -27,7 +27,7 @@ On the [latest release page](https://github.com/hobbyquaker/arcticfox-config/rel
 a .rpm file and a .tar.gz that should work on other distributions.
 
 For USB access with an unprivileged user you need udev rules, see 
-https://github.com/hobbyquaker/arcticfox-config/issues/25
+[Issue #25](https://github.com/hobbyquaker/arcticfox-config/issues/25)
 
 
 ### Usage
@@ -42,7 +42,7 @@ Depending on your installed Node.js version it might be necessary to rebuild the
 `npm run rebuild`.
 
 If you want to do a build on your own you can find hints on dependencies in 
-[https://github.com/hobbyquaker/arcticfox-config/issues/23](#23).
+[https://github.com/hobbyquaker/arcticfox-config/issues/23](Issue #23).
 
 
 ### Related
