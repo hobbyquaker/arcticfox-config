@@ -79,10 +79,10 @@
       ]
     },
     "deb": {
-      "afterIntall": "build/after-install.tpl"
+      "afterInstall": "build/after-install.tpl"
     },
     "rpm": {
-      "afterIntall": "build/after-install.tpl"
+      "afterInstall": "build/after-install.tpl"
     }
   }
 }
