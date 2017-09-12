@@ -23,13 +23,10 @@ arcticfox-config-x.x.x.dmg file.
 
 #### Linux
 
-~~On the [latest release page](https://github.com/hobbyquaker/arcticfox-config/releases/latest) you can find a .deb file 
-for Ubuntu and Debian and a .tar.gz that should work on other distributions.~~
+On the [latest release page](https://github.com/hobbyquaker/arcticfox-config/releases/latest) you can find a .deb file, 
+a .rpm file and a .tar.gz that should work on other distributions.
 
-Until now there is no ready to use Linux build available for download. But you can build it yourself, for instructions
-see https://github.com/hobbyquaker/arcticfox-config/issues/23
-
-For USB access with an unprivileged user you need UDEV rules, see 
+For USB access with an unprivileged user you need udev rules, see 
 https://github.com/hobbyquaker/arcticfox-config/issues/25
 
 
@@ -42,7 +39,10 @@ Start the Application, connect your Arcticfox Device.
 
 Clone the repo, do `npm install` in the project root. Use `npm start` to start the application in debug mode.
 Depending on your installed Node.js version it might be necessary to rebuild the USB HID module:
-`./node_modules/.bin/electron-rebuild`
+`npm run rebuild`.
+
+If you want to do a build on your own you can find hints on dependencies in 
+[https://github.com/hobbyquaker/arcticfox-config/issues/23](#23).
 
 
 ### Related
