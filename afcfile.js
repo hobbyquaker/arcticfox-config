@@ -24,7 +24,33 @@ const enumClickAction = {
     19: 'ReReadResistanceAndSmart'
 };
 
-const enumLineContent = {
+const enumClassicLineContent = {
+    /*
+    internal enum ClassicLineContent : byte
+{
+    NonDominant = 0,
+
+    Volt = 0x10,
+    Resistance = 0x20,
+    Amps = 0x30,
+    Puffs = 0x31,
+    Time = 0x32,
+    BatteryVolts = 0x33,
+    Vout = 0x34,
+    BoardTemperature = 0x35,
+    RealResistance = 0x36,
+    DateTime = 0x37,
+    LastPuff = 0x38,
+    LastTemperature = 0x39,
+    LastPower = 0x3A,
+    CoilTemperature = 0x3B,
+    Battery = 0x40,
+    BatteryWithPercents = 0x41,
+    BatteryWithVolts = 0x42,
+
+    FireTimeMask = 0x80
+}
+     */
     0: 'NonDominant',
     16: 'Volt',
     32: 'Resistance',
@@ -37,17 +63,119 @@ const enumLineContent = {
     54: 'RealResistance',
     55: 'DateTime',
     56: 'LastPuff',
-    58: 'LastTemperature',
-    59: 'LastPower',
+    57: 'LastTemperature',
+    58: 'LastPower',
+    59: 'CoilTemperature',
     60: 'BatteryPercents',
     64: 'Battery',
     65: 'BatteryWithPercents',
     66: 'BatteryWithVolts',
 };
 
+const enumCircleLineContent = {
+    /*
+internal enum CircleLineContent : byte
+{
+
+    Resistance = 0x20,
+    Amps = 0x30,
+    Puffs = 0x31,
+    Time = 0x32,
+    BatteryVolts = 0x33,
+    Vout = 0x34,
+    BoardTemperature = 0x35,
+    RealResistance = 0x36,
+    DateTime = 0x37,
+    LastPuff = 0x38,
+    LastTemperature = 0x39,
+    LastPower = 0x3A,
+    CoilTemperature = 0x3B,
+    Battery = 0x40,
+    BatteryWithPercents = 0x41,
+    BatteryWithVolts = 0x42,
+
+    FireTimeMask = 0x80
+}
+
+     */
+    16: 'Volt',
+    32: 'Resistance',
+    48: 'Amps',
+    49: 'Puffs',
+    50: 'Time',
+    51: 'BatteryVolts',
+    52: 'Vout',
+    53: 'BoardTemperature',
+    54: 'RealResistance',
+    55: 'DateTime',
+    56: 'LastPuff',
+    57: 'LastTemperature',
+    58: 'LastPower',
+    59: 'CoilTemperature',
+    64: 'Battery',
+    65: 'BatteryWithPercents',
+    66: 'BatteryWithVolts',
+};
+
+
+const enumSmallLineContent = {
+    /*
+internal enum SmallLineContent : byte
+{
+    Resistance = 0x20,
+    Amps = 0x30,
+    Puffs = 0x31,
+    Time = 0x32,
+    BatteryVolts = 0x33,
+    Vout = 0x34,
+    BoardTemperature = 0x35,
+    RealResistance = 0x36,
+    DateTime = 0x37,
+    LastPuff = 0x38,
+    LastTemperature = 0x39,
+    LastPower = 0x3A,
+    BatteryPercents = 0x3B,
+    CoilTemperature = 0x3C,
+
+    FireTimeMask = 0x80
+}
+     */
+    32: 'Resistance',
+    48: 'Amps',
+    49: 'Puffs',
+    50: 'Time',
+    51: 'BatteryVolts',
+    52: 'Vout',
+    53: 'BoardTemperature',
+    54: 'RealResistance',
+    55: 'DateTime',
+    56: 'LastPuff',
+    57: 'LastTemperature',
+    58: 'LastPower',
+    59: 'CoilTemperature',
+};
+
 
 
 const enumFoxyLineContent = {
+    /*
+    internal enum FoxyLineContent : byte
+{
+    Amps = 0x30,
+    Puffs = 0x31,
+    Time = 0x32,
+    BatteryVolts = 0x33,
+    Vout = 0x34,
+    RealResistance = 0x35,
+    DateTime = 0x36,
+    LastPuff = 0x37,
+    LastTemperature = 0x38,
+    LastPower = 0x39,
+    CoilTemperature = 0x3A,
+
+    FireTimeMask = 0x80
+}
+     */
     48: 'Amps',
     49: 'Puffs',
     50: 'Time',
@@ -58,6 +186,7 @@ const enumFoxyLineContent = {
     55: 'LastPuff',
     56: 'LastTemperature',
     57: 'LastPower',
+    58: 'CoilTemperature'
 };
 
 const enumMaterial = {
@@ -198,8 +327,14 @@ class AfcFile {
     }
 
     conf2xml(config) {
-        function lineContent(attr) {
-            return enumLineContent[config[attr]] + (config[attr + 'Puff'] ? ', FireTimeMask' : '');
+        function smallLineContent(attr) {
+            return enumSmallLineContent[config[attr]] + (config[attr + 'Puff'] ? ', FireTimeMask' : '');
+        }
+        function circleLineContent(attr) {
+            return enumCircleLineContent[config[attr]] + (config[attr + 'Puff'] ? ', FireTimeMask' : '');
+        }
+        function classicLineContent(attr) {
+            return enumClassicLineContent[config[attr]] + (config[attr + 'Puff'] ? ', FireTimeMask' : '');
         }
 
         function foxyLineContent(attr) {
@@ -1228,58 +1363,58 @@ class AfcFile {
             'Model.Interface.ShortcutsTC[2].InMenu': (config, val) => config.ShortcutsTC2InMenu = re(enumShortcutsInMenu, val),
 
             'Model.Interface.ClassicSkinVWLines.Line1': (config, val) => {
-                config.ClassicSkinVWLine1 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinVWLine1 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinVWLine1Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.ClassicSkinVWLines.Line2': (config, val) => {
-                config.ClassicSkinVWLine2 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinVWLine2 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinVWLine2Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.ClassicSkinVWLines.Line3': (config, val) => {
-                config.ClassicSkinVWLine3 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinVWLine3 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinVWLine3Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.ClassicSkinVWLines.Line4': (config, val) => {
-                config.ClassicSkinVWLine4 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinVWLine4 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinVWLine4Puff = val.endsWith('FireTimeMask');
             },
 
             'Model.Interface.ClassicSkinTCLines.Line1': (config, val) => {
-                config.ClassicSkinTCLine1 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinTCLine1 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinTCLine1Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.ClassicSkinTCLines.Line2': (config, val) => {
-                config.ClassicSkinTCLine2 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinTCLine2 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinTCLine2Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.ClassicSkinTCLines.Line3': (config, val) => {
-                config.ClassicSkinTCLine3 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinTCLine3 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinTCLine3Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.ClassicSkinTCLines.Line4': (config, val) => {
-                config.ClassicSkinTCLine4 = reStartsWith(enumLineContent, val);
+                config.ClassicSkinTCLine4 = reStartsWith(enumClassicLineContent, val);
                 config.ClassicSkinTCLine4Puff = val.endsWith('FireTimeMask');
             },
 
             'Model.Interface.CircleSkinVWLines.Line1': (config, val) => {
-                config.CircleSkinVWLine1 = reStartsWith(enumLineContent, val);
+                config.CircleSkinVWLine1 = reStartsWith(enumCircleLineContent, val);
             },
             'Model.Interface.CircleSkinVWLines.Line2': (config, val) => {
-                config.CircleSkinVWLine2 = reStartsWith(enumLineContent, val);
+                config.CircleSkinVWLine2 = reStartsWith(enumCircleLineContent, val);
             },
             'Model.Interface.CircleSkinVWLines.Line3': (config, val) => {
-                config.CircleSkinVWLine3 = reStartsWith(enumLineContent, val);
+                config.CircleSkinVWLine3 = reStartsWith(enumCircleLineContent, val);
                 config.CircleSkinVWLine3Puff = val.endsWith('FireTimeMask');
             },
 
             'Model.Interface.CircleSkinTCLines.Line1': (config, val) => {
-                config.CircleSkinTCLine1 = reStartsWith(enumLineContent, val);
+                config.CircleSkinTCLine1 = reStartsWith(enumCircleLineContent, val);
             },
             'Model.Interface.CircleSkinTCLines.Line2': (config, val) => {
-                config.CircleSkinTCLine2 = reStartsWith(enumLineContent, val);
+                config.CircleSkinTCLine2 = reStartsWith(enumCircleLineContent, val);
             },
             'Model.Interface.CircleSkinTCLines.Line3': (config, val) => {
-                config.CircleSkinTCLine3 = reStartsWith(enumLineContent, val);
+                config.CircleSkinTCLine3 = reStartsWith(enumCircleLineContent, val);
                 config.CircleSkinTCLine3Puff = val.endsWith('FireTimeMask');
             },
 
@@ -1310,46 +1445,46 @@ class AfcFile {
             },
 
             'Model.Interface.SmallSkinVWLines.Line1': (config, val) => {
-                config.SmallSkinVWLine1 = reStartsWith(enumLineContent, val);
+                config.SmallSkinVWLine1 = reStartsWith(enumSmallLineContent, val);
                 config.SmallSkinVWLine1Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.SmallSkinVWLines.Line2': (config, val) => {
-                config.SmallSkinVWLine2 = reStartsWith(enumLineContent, val);
+                config.SmallSkinVWLine2 = reStartsWith(enumSmallLineContent, val);
                 config.SmallSkinVWLine2Puff = val.endsWith('FireTimeMask');
             },
 
             'Model.Interface.SmallSkinTCLines.Line1': (config, val) => {
-                config.SmallSkinTCLine1 = reStartsWith(enumLineContent, val);
+                config.SmallSkinTCLine1 = reStartsWith(enumSmallLineContent, val);
                 config.SmallSkinTCLine1Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.SmallSkinTCLines.Line2': (config, val) => {
-                config.SmallSkinTCLine2 = reStartsWith(enumLineContent, val);
+                config.SmallSkinTCLine2 = reStartsWith(enumSmallLineContent, val);
                 config.SmallSkinTCLine2Puff = val.endsWith('FireTimeMask');
             },
 
             'Model.Interface.MediumSkinVWLines.Line1': (config, val) => {
-                config.MediumSkinVWLine1 = reStartsWith(enumLineContent, val);
+                config.MediumSkinVWLine1 = reStartsWith(enumClassicLineContent, val);
                 config.MediumSkinVWLine1Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.MediumSkinVWLines.Line2': (config, val) => {
-                config.MediumSkinVWLine2 = reStartsWith(enumLineContent, val);
+                config.MediumSkinVWLine2 = reStartsWith(enumClassicLineContent, val);
                 config.MediumSkinVWLine2Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.MediumSkinVWLines.Line3': (config, val) => {
-                config.MediumSkinVWLine3 = reStartsWith(enumLineContent, val);
+                config.MediumSkinVWLine3 = reStartsWith(enumClassicLineContent, val);
                 config.MediumSkinVWLine3Puff = val.endsWith('FireTimeMask');
             },
 
             'Model.Interface.MediumSkinTCLines.Line1': (config, val) => {
-                config.MediumSkinTCLine1 = reStartsWith(enumLineContent, val);
+                config.MediumSkinTCLine1 = reStartsWith(enumClassicLineContent, val);
                 config.MediumSkinTCLine1Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.MediumSkinTCLines.Line2': (config, val) => {
-                config.MediumSkinTCLine2 = reStartsWith(enumLineContent, val);
+                config.MediumSkinTCLine2 = reStartsWith(enumClassicLineContent, val);
                 config.MediumSkinTCLine2Puff = val.endsWith('FireTimeMask');
             },
             'Model.Interface.MediumSkinTCLines.Line3': (config, val) => {
-                config.MediumSkinTCLine3 = reStartsWith(enumLineContent, val);
+                config.MediumSkinTCLine3 = reStartsWith(enumClassicLineContent, val);
                 config.MediumSkinTCLine3Puff = val.endsWith('FireTimeMask');
             },
 
