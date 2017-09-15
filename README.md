@@ -28,6 +28,8 @@ a .rpm file and a .tar.gz that should work on other distributions.
 
 For USB access with an unprivileged user you need udev rules, see 
 [Issue #25](https://github.com/hobbyquaker/arcticfox-config/issues/25)
+The .deb and .rpm packages install these udev rules automatically and create a group `arcticfox`. You have to add you 
+user to this group (`usermod -a -G arcticfox username`).
 
 
 ### Usage
