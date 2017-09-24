@@ -416,7 +416,7 @@ ipc.on('download', () => {
 app.on('ready', () => {
     try {
         let locale = app.getLocale().substr(0, 2);
-        const available = ['cn', 'cz', 'de', 'en', 'es', 'fr', 'hu', 'it', 'ja', 'nl', 'pl', 'ru', 'sk', 'sr', 'tr', 'ua'];
+        const available = ['cn', 'cs', 'cz', 'de', 'en', 'es', 'fr', 'hu', 'it', 'ja', 'nl', 'pl', 'ru', 'sk', 'sr', 'tr', 'ua'];
         if (available.indexOf(locale) === -1) {
             locale = 'en;'
         }
