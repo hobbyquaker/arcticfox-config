@@ -44,7 +44,7 @@ Depending on your installed Node.js version it might be necessary to rebuild the
 `npm run rebuild`.
 
 If you want to do a build on your own you can find hints on dependencies in 
-[https://github.com/hobbyquaker/arcticfox-config/issues/23](Issue #23).
+[Issue #23](https://github.com/hobbyquaker/arcticfox-config/issues/23).
 
 
 ### Related
