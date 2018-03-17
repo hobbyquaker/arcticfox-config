@@ -126,6 +126,7 @@ function download() {
 fox.on('connect', () => {
     ipcSend('connect', true);
     if (autoconnect) {
+        fox.setDateTime(new Date());
         download();
     }
 });
@@ -407,6 +408,7 @@ ipc.on('piregchange', (event, data) => {
 ipc.on('download', () => {
     console.log('ipc download', fox.connected)
     if (fox.connected) {
+        fox.setDateTime(new Date());
         download();
     } else {
         dialog.showErrorBox('No compatible USB Device', _('Message.NoCompatibleUSBDevice'))
@@ -473,5 +475,3 @@ function _(key) {
         return key;
     }
 }
-
-
