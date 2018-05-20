@@ -18,6 +18,14 @@
 
 #### macOS
 
+##### homebrew
+
+To install the latest version, use homebrew:
+
+`brew install hobbyquaker-arcticfox-config`
+
+##### Direct download
+
 Go to the [latest release page](https://github.com/hobbyquaker/arcticfox-config/releases/latest) and download the 
 arcticfox-config-x.x.x.dmg file.
 
