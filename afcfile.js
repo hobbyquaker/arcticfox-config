@@ -591,13 +591,13 @@ class AfcFile {
             'Model.Interface.ClassicSkinTCLines.Line3': () => classicLineContent('ClassicSkinTCLine3'),
             'Model.Interface.ClassicSkinTCLines.Line4': () => classicLineContent('ClassicSkinTCLine4'),
 
-            'Model.Interface.CircleSkinVWLines.Line1': () => classicLineContent('CircleSkinVWLine1'),
-            'Model.Interface.CircleSkinVWLines.Line2': () => classicLineContent('CircleSkinVWLine2'),
-            'Model.Interface.CircleSkinVWLines.Line3': () => classicLineContent('CircleSkinVWLine3'),
+            'Model.Interface.CircleSkinVWLines.Line1': () => circleLineContent('CircleSkinVWLine1'),
+            'Model.Interface.CircleSkinVWLines.Line2': () => circleLineContent('CircleSkinVWLine2'),
+            'Model.Interface.CircleSkinVWLines.Line3': () => circleLineContent('CircleSkinVWLine3'),
 
-            'Model.Interface.CircleSkinTCLines.Line1': () => classicLineContent('CircleSkinTCLine1'),
-            'Model.Interface.CircleSkinTCLines.Line2': () => classicLineContent('CircleSkinTCLine2'),
-            'Model.Interface.CircleSkinTCLines.Line3': () => classicLineContent('CircleSkinTCLine3'),
+            'Model.Interface.CircleSkinTCLines.Line1': () => circleLineContent('CircleSkinTCLine1'),
+            'Model.Interface.CircleSkinTCLines.Line2': () => circleLineContent('CircleSkinTCLine2'),
+            'Model.Interface.CircleSkinTCLines.Line3': () => circleLineContent('CircleSkinTCLine3'),
 
             'Model.Interface.FoxySkinVWLines.Line1': () => foxyLineContent('FoxySkinVWLine1'),
             'Model.Interface.FoxySkinVWLines.Line2': () => foxyLineContent('FoxySkinVWLine2'),
@@ -607,11 +607,11 @@ class AfcFile {
             'Model.Interface.FoxySkinTCLines.Line2': () => foxyLineContent('FoxySkinTCLine2'),
             'Model.Interface.FoxySkinTCLines.Line3': () => foxyLineContent('FoxySkinTCLine3'),
 
-            'Model.Interface.SmallSkinVWLines.Line1': () => classicLineContent('SmallSkinVWLine1'),
-            'Model.Interface.SmallSkinVWLines.Line2': () => classicLineContent('SmallSkinVWLine2'),
+            'Model.Interface.SmallSkinVWLines.Line1': () => smallLineContent('SmallSkinVWLine1'),
+            'Model.Interface.SmallSkinVWLines.Line2': () => smallLineContent('SmallSkinVWLine2'),
 
-            'Model.Interface.SmallSkinTCLines.Line1': () => classicLineContent('SmallSkinTCLine1'),
-            'Model.Interface.SmallSkinTCLines.Line2': () => classicLineContent('SmallSkinTCLine2'),
+            'Model.Interface.SmallSkinTCLines.Line1': () => smallLineContent('SmallSkinTCLine1'),
+            'Model.Interface.SmallSkinTCLines.Line2': () => smallLineContent('SmallSkinTCLine2'),
 
             'Model.Interface.MediumSkinVWLines.Line1': () => classicLineContent('MediumSkinVWLine1'),
             'Model.Interface.MediumSkinVWLines.Line2': () => classicLineContent('MediumSkinVWLine2'),
