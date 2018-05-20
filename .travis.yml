@@ -35,7 +35,7 @@ before_install:
   | tar -xz -C /tmp/git-lfs --strip-components 1 && /tmp/git-lfs/git-lfs pull
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo gem install fpm; fi
 install:
-- nvm install 6
+- nvm install 8
 - npm install
 - npm run rebuild
 - npm prune
