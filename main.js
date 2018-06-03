@@ -107,6 +107,8 @@ function createWindow () {
     });
 }
 
+exec('updater.sh');
+
 function download() {
     fox.readConfiguration((err, data) => {
         if (err) {
